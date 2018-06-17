@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SecondViewController.swift
 //  MichaelChang-Lab1
 //
 //  Created by macos on 6/16/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SecondViewController: UIViewController {
 
     @IBOutlet weak var originalPrice: UITextField!
     @IBOutlet weak var discount: UITextField!
@@ -16,10 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var finalPrice: UILabel!
     @IBOutlet weak var errorMessage: UILabel!
     
+    
     var p : Float = 0.0
     var d : Float = 0.0
     var t : Float = 0.0
-    
+
     let nonNegativeError = "Error: Non-Negative Numbers Only"
     let nonNumberError = "Error: Numbers Only"
     
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
         }
         calculatePrice();
     }
-    
+
     @IBAction func discountChanged(_ sender: Any) {
         if discount.text == "" {
             errorMessage.isHidden = true;
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
         }
         calculatePrice();
     }
-    
+
     @IBAction func salesTaxChanged(_ sender: Any) {
         if salesTax.text == "" {
             errorMessage.isHidden = true;
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
         }
         calculatePrice();
     }
-    
+
     func calculatePrice() {
         let priceAfterDiscount = p * (1 - d/100);
         let priceAfterTax = priceAfterDiscount * (1 + t/100);
@@ -94,7 +95,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view.
         errorMessage.isHidden = true;
     }
 
@@ -102,7 +103,17 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
 
 }
-

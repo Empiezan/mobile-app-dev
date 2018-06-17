@@ -14,6 +14,8 @@
 		222B7CD320D5D808005B1636 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222B7CD120D5D808005B1636 /* LaunchScreen.storyboard */; };
 		222B7CDE20D5D809005B1636 /* MichaelChang_Lab1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CDD20D5D809005B1636 /* MichaelChang_Lab1Tests.swift */; };
 		222B7CE920D5D809005B1636 /* MichaelChang_Lab1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CE820D5D809005B1636 /* MichaelChang_Lab1UITests.swift */; };
+		222B7CFB20D5FA07005B1636 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CFA20D5FA07005B1636 /* SecondViewController.swift */; };
+		222B7CFF20D5FEF5005B1636 /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = 222B7CFE20D5FEF5005B1636 /* calculator.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		222B7CE420D5D809005B1636 /* MichaelChang-Lab1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MichaelChang-Lab1UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		222B7CE820D5D809005B1636 /* MichaelChang_Lab1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MichaelChang_Lab1UITests.swift; sourceTree = "<group>"; };
 		222B7CEA20D5D809005B1636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		222B7CFA20D5FA07005B1636 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		222B7CFE20D5FEF5005B1636 /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calculator.png; path = "../../../../Downloads/iconbeast-lite-300/iconbeast lite 300 - png/calculator.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				222B7CC820D5D806005B1636 /* AppDelegate.swift */,
 				222B7CCA20D5D806005B1636 /* ViewController.swift */,
 				222B7CCC20D5D806005B1636 /* Main.storyboard */,
+				222B7CFA20D5FA07005B1636 /* SecondViewController.swift */,
+				222B7CFE20D5FEF5005B1636 /* calculator.png */,
 				222B7CCF20D5D808005B1636 /* Assets.xcassets */,
 				222B7CD120D5D808005B1636 /* LaunchScreen.storyboard */,
 				222B7CD420D5D808005B1636 /* Info.plist */,
@@ -231,6 +237,7 @@
 			files = (
 				222B7CD320D5D808005B1636 /* LaunchScreen.storyboard in Resources */,
 				222B7CD020D5D808005B1636 /* Assets.xcassets in Resources */,
+				222B7CFF20D5FEF5005B1636 /* calculator.png in Resources */,
 				222B7CCE20D5D806005B1636 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				222B7CFB20D5FA07005B1636 /* SecondViewController.swift in Sources */,
 				222B7CCB20D5D806005B1636 /* ViewController.swift in Sources */,
 				222B7CC920D5D806005B1636 /* AppDelegate.swift in Sources */,
 			);
