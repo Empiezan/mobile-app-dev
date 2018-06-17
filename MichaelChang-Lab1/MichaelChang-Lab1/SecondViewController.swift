@@ -15,11 +15,13 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var salesTax: UITextField!
     @IBOutlet weak var finalPrice: UILabel!
     @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var amount: UITextField!
     
     
     var p : Float = 0.0
     var d : Float = 0.0
     var t : Float = 0.0
+    var a : Float = 1.0
 
     let nonNegativeError = "Error: Non-Negative Numbers Only"
     let nonNumberError = "Error: Numbers Only"
@@ -87,10 +89,32 @@ class SecondViewController: UIViewController {
         calculatePrice();
     }
 
+    @IBAction func amountChanged(_ sender: Any) {
+        if amount.text == "" {
+            errorMessage.isHidden = true;
+            a = 0.0;
+        }
+        else if let testVar = Float(amount.text!) {
+            if testVar >= 0 {
+                errorMessage.isHidden = true;
+                a = testVar;
+            } else {
+                errorMessage.isHidden = false;
+                errorMessage.text = nonNegativeError;
+            }
+        }
+        else {
+            errorMessage.isHidden = false;
+            errorMessage.text = nonNumberError;
+        }
+        calculatePrice();
+    }
+    
     func calculatePrice() {
         let priceAfterDiscount = p * (1 - d/100);
         let priceAfterTax = priceAfterDiscount * (1 + t/100);
-        finalPrice.text = "$\(String(format: "%.2f", priceAfterTax))";
+        let pricePerItem = priceAfterTax / a;
+        finalPrice.text = "$\(String(format: "%.2f / item", pricePerItem))";
     }
     
     override func viewDidLoad() {

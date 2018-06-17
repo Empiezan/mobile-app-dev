@@ -103,6 +103,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="amountChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="nDR-iR-L74"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Final Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsf-CR-o96">
                                 <rect key="frame" x="147" y="467" width="79" height="21"/>
@@ -118,6 +121,7 @@
                     <tabBarItem key="tabBarItem" title="1" image="calculator.png" id="QP1-Gd-apE"/>
                     <navigationItem key="navigationItem" id="DDf-y7-Tz0"/>
                     <connections>
+                        <outlet property="amount" destination="PYY-cg-TX2" id="xZH-AW-5y0"/>
                         <outlet property="discount" destination="bQ2-Ie-Mjt" id="8pK-Mx-0Ld"/>
                         <outlet property="errorMessage" destination="tBH-ap-gBr" id="g2D-FZ-sXh"/>
                         <outlet property="finalPrice" destination="hVg-me-cPI" id="ZCv-SU-pep"/>
@@ -166,21 +170,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Final Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-5W-zfd">
-                                <rect key="frame" x="147" y="414" width="79" height="21"/>
+                                <rect key="frame" x="147" y="467" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxu-tJ-2m0">
-                                <rect key="frame" x="0.0" y="443" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="496" width="375" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error: Invalid Input" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfV-3j-zYn">
-                                <rect key="frame" x="32" y="481" width="310" height="21"/>
+                                <rect key="frame" x="32" y="534" width="310" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,12 +220,30 @@
                                     <action selector="salesTaxChanged:" destination="Zcg-wc-V7W" eventType="editingChanged" id="ZPj-lm-PfC"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLc-fH-Z35">
+                                <rect key="frame" x="158" y="400" width="60" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p87-WG-g0G">
+                                <rect key="frame" x="138" y="429" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="amountChanged:" destination="Zcg-wc-V7W" eventType="editingChanged" id="0eA-14-byl"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="K0S-MJ-tPl"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="2" image="calculator.png" id="5Jd-Um-bI4"/>
                     <connections>
+                        <outlet property="amount" destination="p87-WG-g0G" id="AYH-Dw-84r"/>
                         <outlet property="discount" destination="sZb-Dd-UsB" id="Is4-IS-Q3n"/>
                         <outlet property="errorMessage" destination="LfV-3j-zYn" id="dtZ-xn-a38"/>
                         <outlet property="finalPrice" destination="zxu-tJ-2m0" id="vGR-Xv-Ktj"/>
