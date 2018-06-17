@@ -17,12 +17,14 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var amount: UITextField!
     
-    
     var p : Float = 0.0
     var d : Float = 0.0
     var t : Float = 0.0
     var a : Float = 1.0
+    var finalP : Float = 0.0
 
+    let test : String = "Hello World"
+    
     let nonNegativeError = "Error: Non-Negative Numbers Only"
     let nonNumberError = "Error: Numbers Only"
     

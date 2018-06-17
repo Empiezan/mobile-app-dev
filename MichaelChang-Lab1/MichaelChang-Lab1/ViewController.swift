@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var amount: UITextField!
     
+    var secondViewController : SecondViewController!;
+    
     var p : Float = 0.0
     var d : Float = 0.0
     var t : Float = 0.0
@@ -115,13 +117,27 @@ class ViewController: UIViewController {
         let priceAfterDiscount = p * (1 - d/100);
         let priceAfterTax = priceAfterDiscount * (1 + t/100);
         let pricePerItem = priceAfterTax / a;
+        print("Number of view controllers = \(self.tabBarController?.viewControllers?.count)")
+        if let foo = self.tabBarController?.viewControllers![1] as? SecondViewController {
+            print("Found second view controller" + foo.test)
+            if let textLabel : UILabel = foo.finalPrice {
+                print("Found reference to final price label")
+                if let str : String = textLabel.text {
+                    print("yayyyyy" + str)
+                }
+            }
+        } else {
+            print("Could not get reference to Second View Controller")
+        }
         finalPrice.text = "$\(String(format: "%.2f / item", pricePerItem))";
+//        print(secondViewController.finalPrice.text)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         errorMessage.isHidden = true;
+        
     }
 
     override func didReceiveMemoryWarning() {
