@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var originalPrice: UITextField!
     @IBOutlet weak var discount: UITextField!
     @IBOutlet weak var salesTax: UITextField!
@@ -17,15 +18,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var amount: UITextField!
     
-    var secondViewController : SecondViewController!;
+//    var secondViewController : SecondViewController!;
     
     var p : Float = 0.0
     var d : Float = 0.0
     var t : Float = 0.0
     var a : Float = 1.0
+    var finalP : Float = 0.0
+    
+    var cartItems : [String] = []
+    var cartItemPrices : [Float] = []
     
     let nonNegativeError = "Error: Non-Negative Numbers Only"
     let nonNumberError = "Error: Numbers Only"
+    
+    @IBAction func addToCart(_ sender: Any) {
+        if floor(a) == a {
+            let aInt : Int = Int(floor(a))
+            cartItems.append("\(aInt) \(itemName.text!)")
+        }
+        else {
+            cartItems.append("\(a) \(itemName.text!)")
+        }
+        cartItemPrices.append(finalP)
+    }
     
     @IBAction func priceChanged(_ sender: Any) {
         if originalPrice.text == "" {
@@ -116,20 +132,20 @@ class ViewController: UIViewController {
     func calculatePrice() {
         let priceAfterDiscount = p * (1 - d/100);
         let priceAfterTax = priceAfterDiscount * (1 + t/100);
-        let pricePerItem = priceAfterTax / a;
-        print("Number of view controllers = \(self.tabBarController?.viewControllers?.count)")
-        if let foo = self.tabBarController?.viewControllers![1] as? SecondViewController {
-            print("Found second view controller" + foo.test)
-            if let textLabel : UILabel = foo.finalPrice {
-                print("Found reference to final price label")
-                if let str : String = textLabel.text {
-                    print("yayyyyy" + str)
-                }
-            }
-        } else {
-            print("Could not get reference to Second View Controller")
-        }
-        finalPrice.text = "$\(String(format: "%.2f / item", pricePerItem))";
+        finalP = priceAfterTax * a;
+//        print("Number of view controllers = \(self.tabBarController?.viewControllers?.count)")
+//        if let foo = self.tabBarController?.viewControllers![1] as? SecondViewController {
+//            print("Found second view controller" + foo.test)
+//            if let textLabel : UILabel = foo.finalPrice {
+//                print("Found reference to final price label")
+//                if let str : String = textLabel.text {
+//                    print("yayyyyy" + str)
+//                }
+//            }
+//        } else {
+//            print("Could not get reference to Second View Controller")
+//        }
+        finalPrice.text = "$\(String(format: "%.2f", finalP))";
 //        print(secondViewController.finalPrice.text)
     }
     
@@ -139,12 +155,9 @@ class ViewController: UIViewController {
         errorMessage.isHidden = true;
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-
