@@ -115,7 +115,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="My Shopping Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC6-d9-h3V">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Shopping Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC6-d9-h3V">
                                 <rect key="frame" x="60" y="58" width="248.5" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -168,9 +168,9 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="G9t-m2-cSA"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqg-IF-e9U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqg-IF-e9U">
                                 <rect key="frame" x="16" y="57" width="33" height="30"/>
-                                <state key="normal" title="Button" image="shopping-cart.png"/>
+                                <state key="normal" image="shoppingCart"/>
                                 <connections>
                                     <action selector="cartIconPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1bf-Yp-MUT"/>
                                 </connections>
@@ -260,7 +260,6 @@
         <!--Cart-->
         <scene sceneID="qTX-Fr-OKz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="leW-1L-qWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Lfn-bo-t2Q" customClass="ListViewController" customModule="MichaelChang_Lab1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pHt-St-wyd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -326,6 +325,7 @@
                         <outlet property="totalCartCost" destination="gtR-cS-Rhy" id="UJs-ez-Oi8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="leW-1L-qWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1832.8" y="561.76911544227892"/>
         </scene>
@@ -333,5 +333,6 @@
     <resources>
         <image name="calculator.png" width="30" height="30"/>
         <image name="shopping-cart.png" width="29" height="30"/>
+        <image name="shoppingCart" width="29" height="30"/>
     </resources>
 </document>

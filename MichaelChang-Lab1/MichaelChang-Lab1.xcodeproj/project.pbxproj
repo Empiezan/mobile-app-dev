@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22106C8820D72B2C00289188 /* shopping-cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 22106C8720D72B2C00289188 /* shopping-cart.png */; };
 		22106C8A20D75ACF00289188 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22106C8920D75ACF00289188 /* ListViewController.swift */; };
 		222B7CC920D5D806005B1636 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CC820D5D806005B1636 /* AppDelegate.swift */; };
 		222B7CCB20D5D806005B1636 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CCA20D5D806005B1636 /* ViewController.swift */; };
@@ -16,7 +15,7 @@
 		222B7CD320D5D808005B1636 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222B7CD120D5D808005B1636 /* LaunchScreen.storyboard */; };
 		222B7CDE20D5D809005B1636 /* MichaelChang_Lab1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CDD20D5D809005B1636 /* MichaelChang_Lab1Tests.swift */; };
 		222B7CE920D5D809005B1636 /* MichaelChang_Lab1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B7CE820D5D809005B1636 /* MichaelChang_Lab1UITests.swift */; };
-		68E93ADF20D6D99000DF2B99 /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E93ADE20D6D99000DF2B99 /* calculator.png */; };
+		68910EB420D9A991008F4199 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68910EB320D9A991008F4199 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		22106C8720D72B2C00289188 /* shopping-cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shopping-cart.png"; path = "../../../../Downloads/iconbeast-lite-300/iconbeast lite 300 - png/shopping-cart.png"; sourceTree = "<group>"; };
 		22106C8920D75ACF00289188 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		222B7CC520D5D806005B1636 /* MichaelChang-Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MichaelChang-Lab1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		222B7CC820D5D806005B1636 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +50,7 @@
 		222B7CE420D5D809005B1636 /* MichaelChang-Lab1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MichaelChang-Lab1UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		222B7CE820D5D809005B1636 /* MichaelChang_Lab1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MichaelChang_Lab1UITests.swift; sourceTree = "<group>"; };
 		222B7CEA20D5D809005B1636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68E93ADE20D6D99000DF2B99 /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator.png; sourceTree = "<group>"; };
+		68910EB320D9A991008F4199 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +106,7 @@
 				222B7CCA20D5D806005B1636 /* ViewController.swift */,
 				22106C8920D75ACF00289188 /* ListViewController.swift */,
 				222B7CCF20D5D808005B1636 /* Assets.xcassets */,
-				68E93ADE20D6D99000DF2B99 /* calculator.png */,
-				22106C8720D72B2C00289188 /* shopping-cart.png */,
+				68910EB320D9A991008F4199 /* Images.xcassets */,
 				222B7CD120D5D808005B1636 /* LaunchScreen.storyboard */,
 				222B7CD420D5D808005B1636 /* Info.plist */,
 			);
@@ -239,10 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				222B7CD320D5D808005B1636 /* LaunchScreen.storyboard in Resources */,
+				68910EB420D9A991008F4199 /* Images.xcassets in Resources */,
 				222B7CD020D5D808005B1636 /* Assets.xcassets in Resources */,
 				222B7CCE20D5D806005B1636 /* Main.storyboard in Resources */,
-				68E93ADF20D6D99000DF2B99 /* calculator.png in Resources */,
-				22106C8820D72B2C00289188 /* shopping-cart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
