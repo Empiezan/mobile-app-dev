@@ -39,6 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func emptyCart(_ sender: Any) {
         cartItems.removeAll()
+        cartItemAmounts.removeAll()
         cartItemPrices.removeAll()
         shoppingCartTable.reloadData()
         calculateCartTotal()
@@ -67,9 +68,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return
         }
         errorMessage.isHidden = true
-        for amount in cartItemAmounts {
-            print(amount)
-        }
         if cartItems.contains(itemName.text!) {
             print("Cart already contains " + itemName.text!)
             let itemIndex = cartItems.index(of: itemName.text!)
@@ -218,6 +216,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, commit editingStyle : UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             cartItems.remove(at: indexPath.row)
+            cartItemAmounts.remove(at: indexPath.row)
             cartItemPrices.remove(at: indexPath.row)
             shoppingCartTable.reloadData()
             calculateCartTotal()
