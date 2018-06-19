@@ -19,6 +19,15 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var calcController : ViewController!
     
+    @IBAction func emptyCart(_ sender: Any) {
+        cartItems.removeAll()
+        cartItemPrices.removeAll()
+        calcController.cartItems = cartItems
+        calcController.cartItemPrices = cartItemPrices
+        shoppingCartTable.reloadData()
+        calculateCartTotal()
+    }
+    
     func calculateCartTotal () {
         cartTotal = 0.0
         for cartItemPrice in cartItemPrices {
