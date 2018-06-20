@@ -11,7 +11,9 @@ import UIKit
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var cartItems : [String] = []
+    var cartItemAmounts : [Float] = []
     var cartItemPrices : [Float] = []
+    
     var cartTotal : Float = 0.0
     
     @IBOutlet weak var shoppingCartTable: UITableView!
@@ -38,15 +40,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func viewLoadSetup(){
-        if let foo = self.tabBarController?.viewControllers![0] as? ViewController {
-            calcController = foo
-            if let calcCartItems : [String] = foo.cartItems {
-                cartItems = calcCartItems
-                if let calcCartItemPrices : [Float] = foo.cartItemPrices {
-                    cartItemPrices = calcCartItemPrices
-                }
-            }
-        }
+        calcController = self.tabBarController?.viewControllers![0] as? ViewController
+        cartItems = calcController.cartItems
+        cartItemAmounts = calcController.cartItemAmounts
+        cartItemPrices = calcController.cartItemPrices
+        
         if shoppingCartTable != nil {
             print("Reloading Cart Data")
             shoppingCartTable.reloadData()
@@ -63,7 +61,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = shoppingCartTable.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = cartItems[indexPath.row]
+        cell?.textLabel?.text = String(cartItemAmounts[indexPath.row]) + " " + cartItems[indexPath.row]
         cell?.detailTextLabel?.text = "$\(cartItemPrices[indexPath.row])"
         return cell!
     }

@@ -17,143 +17,180 @@ class ViewController: UIViewController {
     @IBOutlet weak var finalPrice: UILabel!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var amount: UITextField!
-    
-//    var secondViewController : SecondViewController!;
-    
-    var p : Float = 0.0
-    var d : Float = 0.0
-    var t : Float = 0.0
-    var a : Float = 1.0
-    var finalP : Float = 0.0
+
+//    var p : Float = 0.0
+//    var d : Float = 0.0
+//    var t : Float = 0.0
+//    var a : Float = 1.0
+//    var finalP : Float = 0.0
     
     var cartItems : [String] = []
+    var cartItemAmounts : [Float] = []
     var cartItemPrices : [Float] = []
     
-    let nonNegativeError = "Error: Non-Negative Numbers Only"
-    let nonNumberError = "Error: Numbers Only"
+    lazy var itemNameValid = createValidation(field: itemName, defaultValue: nil)
+    lazy var priceValid = createValidation(field: originalPrice, defaultValue: 0)
+    lazy var discountValid = createValidation(field: discount, defaultValue: 0)
+    lazy var taxValid = createValidation(field: salesTax, defaultValue: 0)
+    lazy var amountValid = createValidation(field: amount, defaultValue: 1)
     
-    @IBAction func addToCart(_ sender: Any) {
-        if floor(a) == a {
-            let aInt : Int = Int(floor(a))
-            cartItems.append("\(aInt) \(itemName.text!)")
+    enum Error {
+        case nonNegativeError
+        case nonNumberError
+        case numberError
+        case excessiveDiscountError
+        case invalidAmountError
+        case noItemNameError
+    }
+    
+    func showError(err : Error) {
+        errorMessage.isHidden = false
+        if err == Error.nonNegativeError {
+            errorMessage.text = "Error: Non-Negative Numbers Only"
         }
-        else {
-            cartItems.append("\(a) \(itemName.text!)")
+        else if err == Error.nonNumberError {
+            errorMessage.text = "Error: Numbers Only"
         }
-        cartItemPrices.append(finalP)
+        else if err == Error.numberError {
+            errorMessage.text = "Error: Item Name Cannot Be Only Numeric"
+        }
+        else if err == Error.excessiveDiscountError {
+            errorMessage.text = "Error: Discount Cannot Exceed 100%"
+        }
+        else if err == Error.invalidAmountError {
+            errorMessage.text = "Error: Amount Must Be Greater Than 0"
+        }
+        else if err == Error.noItemNameError {
+            errorMessage.text = "Error: Item Name Must Not Be Blank"
+        }
+    }
+    
+    func createValidation(field : UITextField!, defaultValue : Float!) -> () -> Bool {
+        func validateField () -> Bool {
+            let fieldText = field.text!
+            if field.isEqual(itemName) {
+                if fieldText == "" {
+                    showError(err: Error.noItemNameError)
+                    return false
+                }
+                else if !CharacterSet.letters.contains(fieldText.unicodeScalars.first!) {
+                    showError(err: Error.numberError)
+                    return false
+                }
+            }
+            else {
+                if let fieldNum = Float(field.text!) {
+                    if fieldNum < 0 {
+                        showError(err: Error.nonNegativeError)
+                        return false
+                    }
+                    if field.isEqual(amount) && fieldNum <= 0 {
+                        showError(err: Error.invalidAmountError)
+                        return false
+                    }
+                    if field.isEqual(discount) && fieldNum > 100 {
+                        showError(err: Error.excessiveDiscountError)
+                        return false
+                    }
+                }
+                else {
+                    if fieldText != "" {
+                        showError(err: Error.nonNumberError)
+                        return false
+                    }
+                }
+            }
+            errorMessage.isHidden = true
+            return true
+        }
+        return validateField
     }
     
     @IBAction func priceChanged(_ sender: Any) {
-        if originalPrice.text == "" {
-            errorMessage.isHidden = true;
-            p = 0.0;
-        }
-        else if let testVar = Float(originalPrice.text!) {
-            if testVar >= 0 {
-                errorMessage.isHidden = true;
-                p = testVar;
-            } else {
-                errorMessage.isHidden = false;
-                errorMessage.text = nonNegativeError;
-            }
+        if priceValid() {
+            print("Valid Price")
+            calculatePrice()
         }
         else {
-            errorMessage.isHidden = false;
-            errorMessage.text = nonNumberError;
+            print("Invalid Price")
         }
-        calculatePrice();
     }
     
     @IBAction func discountChanged(_ sender: Any) {
-        if discount.text == "" {
-            errorMessage.isHidden = true;
-            d = 0.0;
+        if discountValid() {
+            calculatePrice();
         }
-        else if let testVar = Float(discount.text!) {
-            if testVar >= 0 {
-                errorMessage.isHidden = true;
-                d = testVar;
-            } else {
-                errorMessage.isHidden = false;
-                errorMessage.text = nonNegativeError;
-            }
-        }
-        else {
-            errorMessage.isHidden = false;
-            errorMessage.text = nonNumberError;
-        }
-        calculatePrice();
     }
     
     @IBAction func salesTaxChanged(_ sender: Any) {
-        if salesTax.text == "" {
-            errorMessage.isHidden = true;
-            t = 0.0;
+        if taxValid() {
+            calculatePrice()
         }
-        else if let testVar = Float(salesTax.text!) {
-            if testVar >= 0 {
-                errorMessage.isHidden = true;
-                t = testVar;
-            }
-            else {
-                errorMessage.isHidden = false;
-                errorMessage.text = nonNegativeError;
-            }
-        }
-        else {
-            errorMessage.isHidden = false;
-            errorMessage.text = nonNumberError;
-        }
-        calculatePrice();
     }
     
     @IBAction func amountChanged(_ sender: Any) {
-        if amount.text == "" {
-            errorMessage.isHidden = true;
-            a = 1.0;
+        if amountValid() {
+            calculatePrice()
         }
-        else if let testVar = Float(amount.text!) {
-            if testVar >= 0 {
-                errorMessage.isHidden = true;
-                a = testVar;
-            }
-            else {
-                errorMessage.isHidden = false;
-                errorMessage.text = nonNegativeError;
-            }
+    }
+    
+    func checkBlankFields() -> [Float] {
+        var fields : [Float] = [0, 0, 0, 1]
+        if originalPrice.text! != "" {
+            fields[0] = Float(originalPrice.text!)!
         }
-        else {
-            errorMessage.isHidden = false;
-            errorMessage.text = nonNumberError;
+        if discount.text! != "" {
+            fields[1] = Float(discount.text!)!
         }
-        calculatePrice();
+        if salesTax.text! != "" {
+            fields[2] = Float(salesTax.text!)!
+        }
+        if amount.text! != "" {
+            fields[3] = Float(amount.text!)!
+        }
+        return fields
     }
     
     func calculatePrice() {
-        let priceAfterDiscount = p * (1 - d/100);
-        let priceAfterTax = priceAfterDiscount * (1 + t/100);
-        finalP = priceAfterTax * a;
-//        print("Number of view controllers = \(self.tabBarController?.viewControllers?.count)")
-//        if let foo = self.tabBarController?.viewControllers![1] as? SecondViewController {
-//            print("Found second view controller" + foo.test)
-//            if let textLabel : UILabel = foo.finalPrice {
-//                print("Found reference to final price label")
-//                if let str : String = textLabel.text {
-//                    print("yayyyyy" + str)
-//                }
-//            }
-//        } else {
-//            print("Could not get reference to Second View Controller")
-//        }
-        finalPrice.text = "$\(String(format: "%.2f", finalP))";
-//        print(secondViewController.finalPrice.text)
+        var fields : [Float] = checkBlankFields()
+        let priceAfterDiscount = fields[0] * (1 - fields[1]/100)
+        let priceAfterTax = priceAfterDiscount * (1 + fields[2]/100)
+        let finalP = priceAfterTax * fields[3]
+        finalPrice.text = "$\(String(format: "%.2f", finalP))"
+    }
+    
+    @IBAction func addToCart(_ sender: Any) {
+        let fieldsValid = itemNameValid() && priceValid() && discountValid() && taxValid()
+        if fieldsValid {
+            cartItems.append(itemName.text!)
+            var a : Float = 0
+            if amount.text! != "" {
+                a = Float(amount.text!)!
+            }
+            for item in cartItems {
+                print(item)
+            }
+            if cartItems.contains(itemName.text!) {
+                print("Cart already contains " + itemName.text!)
+                let itemIndex = cartItems.index(of: itemName.text!)
+                cartItemAmounts[itemIndex!] += a
+                cartItemPrices[itemIndex!] += Float(finalPrice.text!)!
+            }
+            else {
+                print("Cart adding new item " + itemName.text!)
+                cartItems.append(itemName.text!)
+                cartItemAmounts.append(a)
+                cartItemPrices.append(Float(finalPrice.text!)!)
+            }
+            let itemPrice : String = String(String.dropFirst(finalPrice.text!)())
+            cartItemPrices.append(Float(itemPrice)!)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         errorMessage.isHidden = true;
-        
     }
     
     override func didReceiveMemoryWarning() {

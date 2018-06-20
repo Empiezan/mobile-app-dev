@@ -140,7 +140,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calculator" image="calculator.png" id="QP1-Gd-apE"/>
+                    <tabBarItem key="tabBarItem" title="Calculator" image="calculator" id="QP1-Gd-apE"/>
                     <connections>
                         <outlet property="amount" destination="PYY-cg-TX2" id="xZH-AW-5y0"/>
                         <outlet property="discount" destination="bQ2-Ie-Mjt" id="8pK-Mx-0Ld"/>
@@ -209,7 +209,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7m6-ux-aQp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart.png" id="5Fn-Ba-EWJ"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" id="5Fn-Ba-EWJ"/>
                     <connections>
                         <outlet property="shoppingCartTable" destination="6gq-j7-WjU" id="uOx-7b-QEj"/>
                         <outlet property="totalCartCost" destination="gtR-cS-Rhy" id="UJs-ez-Oi8"/>
@@ -239,7 +239,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calculator.png" width="30" height="30"/>
-        <image name="shopping-cart.png" width="29" height="30"/>
+        <image name="calculator" width="20" height="20"/>
+        <image name="shopping-cart" width="20" height="20"/>
     </resources>
 </document>
