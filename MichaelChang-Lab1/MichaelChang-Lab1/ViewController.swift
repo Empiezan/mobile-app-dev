@@ -162,8 +162,7 @@ class ViewController: UIViewController {
     @IBAction func addToCart(_ sender: Any) {
         let fieldsValid = itemNameValid() && priceValid() && discountValid() && taxValid()
         if fieldsValid {
-            cartItems.append(itemName.text!)
-            var a : Float = 0
+            var a : Float = 1
             if amount.text! != "" {
                 a = Float(amount.text!)!
             }
@@ -180,7 +179,7 @@ class ViewController: UIViewController {
                 print("Cart adding new item " + itemName.text!)
                 cartItems.append(itemName.text!)
                 cartItemAmounts.append(a)
-                cartItemPrices.append(Float(finalPrice.text!)!)
+                cartItemPrices.append(Float(String((finalPrice.text?.dropFirst())!))!)
             }
             let itemPrice : String = String(String.dropFirst(finalPrice.text!)())
             cartItemPrices.append(Float(itemPrice)!)
