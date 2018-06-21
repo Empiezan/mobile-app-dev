@@ -7,7 +7,7 @@
 //
 // Credits
 // 1. Learned how to create a Table View with deletable rows from the Youtube video "How To Enable The User To Delete A Table View Cell In Xcode 8 (Swift 3.0)" (https://www.youtube.com/watch?v=h7kasGi_1Tk)
-// 2. Learned how to force the Table View to reload every time the user clicks back into the ListView from a StackOverflow answer (https://stackoverflow.com/questions/46577217/how-to-reload-a-view-controller-when-back-from-another-view-using-tab-bar)
+// 2. Learned how to force the Table View to reload every time the user clicks back to the ListView  using viewWillAppear and viewLoadSetup from a StackOverflow answer (https://stackoverflow.com/questions/46577217/how-to-reload-a-view-controller-when-back-from-another-view-using-tab-bar)
 // 3. Learned how to get variables from other view controllers from TA Jonathan Yue
 
 import UIKit
