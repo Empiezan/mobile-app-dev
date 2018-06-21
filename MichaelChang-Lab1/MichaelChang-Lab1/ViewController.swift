@@ -5,11 +5,25 @@
 //  Created by macos on 6/16/18.
 //  Copyright © 2018 cse438. All rights reserved.
 //
+// Credits
+// 1. Learned how to create a Tab Controller with Two ViewControllers from the "Creating iOS Apps with Multiple Screens"
+// section of Simon Allardice's Pluralsight course "iOS 11 Fundamentals" (https://www.pluralsight.com/courses/ios-11 fundamentals)
+// 2. Tab icon images sourced from IconBeast Lite (http://www.iconbeast.com/free/)
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        errorMessage.isHidden = true;
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var originalPrice: UITextField!
     @IBOutlet weak var discount: UITextField!
@@ -17,17 +31,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var finalPrice: UILabel!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var amount: UITextField!
-
-//    var p : Float = 0.0
-//    var d : Float = 0.0
-//    var t : Float = 0.0
-//    var a : Float = 1.0
-//    var finalP : Float = 0.0
     
     var cartItems : [String] = []
     var cartItemAmounts : [Float] = []
     var cartItemPrices : [Float] = []
     
+    //Learned about lazy variables from Lecture 2
+    //and already knew about closures from what I
+    //know from JavaScript
     lazy var itemNameValid = createValidation(field: itemName, defaultValue: nil)
     lazy var priceValid = createValidation(field: originalPrice, defaultValue: 0)
     lazy var discountValid = createValidation(field: discount, defaultValue: 0)
@@ -166,14 +177,11 @@ class ViewController: UIViewController {
             if amount.text! != "" {
                 a = Float(amount.text!)!
             }
-            for item in cartItems {
-                print(item)
-            }
             if cartItems.contains(itemName.text!) {
                 print("Cart already contains " + itemName.text!)
                 let itemIndex = cartItems.index(of: itemName.text!)
                 cartItemAmounts[itemIndex!] += a
-                cartItemPrices[itemIndex!] += Float(finalPrice.text!)!
+                cartItemPrices[itemIndex!] += Float(String((finalPrice.text?.dropFirst())!))!
             }
             else {
                 print("Cart adding new item " + itemName.text!)
@@ -181,19 +189,8 @@ class ViewController: UIViewController {
                 cartItemAmounts.append(a)
                 cartItemPrices.append(Float(String((finalPrice.text?.dropFirst())!))!)
             }
-            let itemPrice : String = String(String.dropFirst(finalPrice.text!)())
-            cartItemPrices.append(Float(itemPrice)!)
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        errorMessage.isHidden = true;
-    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

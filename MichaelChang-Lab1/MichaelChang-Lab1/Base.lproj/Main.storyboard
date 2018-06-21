@@ -205,6 +205,14 @@
                                     <outlet property="delegate" destination="Lfn-bo-t2Q" id="mmT-6C-XXX"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbN-le-fcF">
+                                <rect key="frame" x="285" y="579" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Empty Cart"/>
+                                <connections>
+                                    <action selector="emptyCart:" destination="Lfn-bo-t2Q" eventType="touchUpInside" id="JrQ-5N-T3j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7m6-ux-aQp"/>
