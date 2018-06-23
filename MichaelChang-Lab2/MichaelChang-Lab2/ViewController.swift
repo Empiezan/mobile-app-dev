@@ -37,18 +37,22 @@ class ViewController: UIViewController {
         currentPet = .Fish
         petFunctionHelper(animal: .Fish, viewPet)
     }
+    
     @IBAction func bunnyButtonPressed(_ sender: Any) {
         currentPet = .Bunny
         petFunctionHelper(animal: .Bunny, viewPet)
     }
+    
     @IBAction func birdButtonPressed(_ sender: Any) {
         currentPet = .Bird
         petFunctionHelper(animal: .Bird, viewPet)
     }
+    
     @IBAction func catButtonPressed(_ sender: Any) {
         currentPet = .Cat
         petFunctionHelper(animal: .Cat, viewPet)
     }
+    
     @IBAction func dogButtonPressed(_ sender: Any) {
         currentPet = .Dog
         petFunctionHelper(animal: .Dog, viewPet)
@@ -100,7 +104,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        petFunctionHelper(animal: .Dog, viewPet)
+        petFunctionHelper(animal: currentPet, viewPet)
     }
 
     override func didReceiveMemoryWarning() {
