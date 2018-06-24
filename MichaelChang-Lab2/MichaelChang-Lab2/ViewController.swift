@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     var currentPet = Animal.Dog
     var foodBagLocation = CGPoint(x: 0, y: 0)
     var defaultBagLocation = CGPoint(x: 0, y: 0)
-    var hasFed = false
+    var hasFed = true
     
     @IBOutlet weak var happinessLevel: DisplayView!
     @IBOutlet weak var foodLevel: DisplayView!
@@ -42,23 +42,29 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            foodBagLocation = touch.location(in: self.petBox)
-            foodBagView.center = foodBagLocation
+            if foodBagView.isUserInteractionEnabled {
+                foodBagLocation = touch.location(in: self.petBox)
+                foodBagView.center = foodBagLocation
+            }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            foodBagLocation = touch.location(in: self.petBox)
-            foodBagView.center = foodBagLocation
-            if let petImage = petImageView.image {
-                if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !foodBagView.isHidden {
-                    petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
-                        pet.feed()
-                        foodLevelLabel.text = "fed: \(pet.getTimesFed())"
-                        foodLevel.animateValue(to: pet.getFoodLevel())
-                    })
-                    foodBagView.isHidden = true
+            if foodBagView.isUserInteractionEnabled {
+                foodBagLocation = touch.location(in: self.petBox)
+                foodBagView.center = foodBagLocation
+                if let petImage = petImageView.image {
+                    if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !hasFed {
+                        petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
+                            hasFed = true
+                            foodBagView.alpha = 0
+                            foodBagView.isUserInteractionEnabled = false
+                            pet.feed()
+                            foodLevelLabel.text = "fed: \(pet.getTimesFed())"
+                            foodLevel.animateValue(to: pet.getFoodLevel())
+                        })
+                    }
                 }
             }
         }
@@ -109,8 +115,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func feedButtonPressed(_ sender: Any) {
+        foodBagView.isUserInteractionEnabled = true
         foodBagView.center = defaultBagLocation
-        foodBagView.isHidden = false
+        foodBagView.alpha = 1
+        hasFed = false
     }
     
     func petFunctionHelper(animal : Animal, _ f : (Pet) -> Void) {
@@ -143,8 +151,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         petFunctionHelper(animal: currentPet, viewPet)
-        foodBagView.isUserInteractionEnabled = true
         defaultBagLocation = foodBagView.center;
+        foodBagView.alpha = 0
+        foodBagView.isUserInteractionEnabled = false
     }
 
     override func didReceiveMemoryWarning() {

@@ -30,7 +30,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Food Bag" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-lE-6FO">
-                                        <rect key="frame" x="8" y="8" width="48.5" height="48.5"/>
+                                        <rect key="frame" x="8" y="8" width="97" height="97"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hgH-lE-6FO" secondAttribute="height" multiplier="1:1" id="Dxp-Yw-P1Y"/>
                                         </constraints>
@@ -40,7 +40,7 @@
                                 <constraints>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="height" secondItem="XLq-Y2-Aej" secondAttribute="height" multiplier="0.5" id="40S-85-7Fp"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerY" secondItem="XLq-Y2-Aej" secondAttribute="centerY" id="GqA-Wd-6ib"/>
-                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="height" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="0.25" id="ZkU-Xg-UOR"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="height" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="0.5" id="ZkU-Xg-UOR"/>
                                     <constraint firstItem="hgH-lE-6FO" firstAttribute="leading" secondItem="XLq-Y2-Aej" secondAttribute="leading" constant="8" id="gHJ-GC-Px1"/>
                                     <constraint firstItem="hgH-lE-6FO" firstAttribute="top" secondItem="XLq-Y2-Aej" secondAttribute="top" constant="8" id="viB-yN-YSc"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerX" secondItem="XLq-Y2-Aej" secondAttribute="centerX" id="yfO-A7-62k"/>
