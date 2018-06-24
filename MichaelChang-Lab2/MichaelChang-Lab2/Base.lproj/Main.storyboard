@@ -21,12 +21,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLq-Y2-Aej">
-                                <rect key="frame" x="0.0" y="20" width="375" height="383.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="387"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dog" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPs-Fv-Y63">
-                                        <rect key="frame" x="91" y="96" width="192" height="191.5"/>
+                                        <rect key="frame" x="90" y="97" width="194" height="193.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="1:1" id="oWg-bR-0Ya"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Food Bag" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-lE-6FO">
+                                        <rect key="frame" x="8" y="8" width="48.5" height="48.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hgH-lE-6FO" secondAttribute="height" multiplier="1:1" id="Dxp-Yw-P1Y"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -34,14 +40,17 @@
                                 <constraints>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="height" secondItem="XLq-Y2-Aej" secondAttribute="height" multiplier="0.5" id="40S-85-7Fp"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerY" secondItem="XLq-Y2-Aej" secondAttribute="centerY" id="GqA-Wd-6ib"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="height" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="0.25" id="ZkU-Xg-UOR"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="leading" secondItem="XLq-Y2-Aej" secondAttribute="leading" constant="8" id="gHJ-GC-Px1"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="top" secondItem="XLq-Y2-Aej" secondAttribute="top" constant="8" id="viB-yN-YSc"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerX" secondItem="XLq-Y2-Aej" secondAttribute="centerX" id="yfO-A7-62k"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="qG1-cA-eCs">
-                                <rect key="frame" x="41" y="612.5" width="293" height="34.5"/>
+                                <rect key="frame" x="41" y="617" width="293" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJf-bF-KlQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Dog"/>
                                         <connections>
@@ -49,7 +58,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opp-JQ-Rbg">
-                                        <rect key="frame" x="62.5" y="0.0" width="30" height="34.5"/>
+                                        <rect key="frame" x="62.5" y="0.0" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Cat"/>
                                         <connections>
@@ -57,7 +66,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyj-ru-miY">
-                                        <rect key="frame" x="125" y="0.0" width="30" height="34.5"/>
+                                        <rect key="frame" x="125" y="0.0" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Bird"/>
                                         <connections>
@@ -65,7 +74,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88x-mS-b4i">
-                                        <rect key="frame" x="187.5" y="0.0" width="43" height="34.5"/>
+                                        <rect key="frame" x="187.5" y="0.0" width="43" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Bunny"/>
                                         <connections>
@@ -73,7 +82,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iG2-lm-dby">
-                                        <rect key="frame" x="263" y="0.0" width="30" height="34.5"/>
+                                        <rect key="frame" x="263" y="0.0" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Fish"/>
                                         <connections>
@@ -83,7 +92,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="g64-ga-qLx">
-                                <rect key="frame" x="41" y="416.5" width="293" height="50"/>
+                                <rect key="frame" x="41" y="420" width="293" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cck-Tn-8kY">
                                         <rect key="frame" x="0.0" y="0.0" width="139" height="50"/>
@@ -100,7 +109,7 @@
                                         <rect key="frame" x="154" y="0.0" width="139" height="50"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Feed">
+                                        <state key="normal" title="Get Food">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -110,10 +119,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pCG-Ir-o2q">
-                                <rect key="frame" x="41" y="474.5" width="293" height="130"/>
+                                <rect key="frame" x="41" y="478" width="293" height="131"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Z-90-Tha">
-                                        <rect key="frame" x="0.0" y="0.0" width="293" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="60.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="L3L-d1-bS8">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="20.5"/>
@@ -133,13 +142,13 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWo-7O-Nrx" customClass="DisplayView" customModule="MichaelChang_Lab2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="20.5" width="293" height="39.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="293" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.12734011270000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6s0-Jw-G6A">
-                                        <rect key="frame" x="0.0" y="70" width="293" height="60"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="293" height="60.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rJw-t3-dGj">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="20.5"/>
@@ -159,7 +168,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiY-M6-e8J" customClass="DisplayView" customModule="MichaelChang_Lab2" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="20.5" width="293" height="39.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="293" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.12734011270000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </view>
                                         </subviews>
@@ -177,6 +186,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qG1-cA-eCs" secondAttribute="bottom" constant="20" id="5Mo-re-Pgy"/>
                             <constraint firstItem="g64-ga-qLx" firstAttribute="top" secondItem="XLq-Y2-Aej" secondAttribute="bottom" constant="13" id="7Gn-E4-Jtn"/>
                             <constraint firstItem="qG1-cA-eCs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="CWU-ca-OvN"/>
+                            <constraint firstItem="XLq-Y2-Aej" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="Dlw-rZ-mb0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g64-ga-qLx" secondAttribute="trailing" constant="41" id="GKk-cR-swT"/>
                             <constraint firstItem="qG1-cA-eCs" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" constant="1" id="IEk-ga-ujR"/>
                             <constraint firstItem="XLq-Y2-Aej" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Not-9z-hGp"/>
@@ -187,19 +197,20 @@
                             <constraint firstItem="g64-ga-qLx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="hmd-L3-u69"/>
                             <constraint firstItem="qG1-cA-eCs" firstAttribute="top" secondItem="pCG-Ir-o2q" secondAttribute="bottom" constant="8" id="sbh-mE-ZMt"/>
                             <constraint firstItem="XLq-Y2-Aej" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uW3-Gu-shz"/>
-                            <constraint firstItem="XLq-Y2-Aej" firstAttribute="height" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.45" id="vuu-wC-9Me"/>
+                            <constraint firstItem="XLq-Y2-Aej" firstAttribute="height" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.45" priority="750" id="vuu-wC-9Me"/>
                             <constraint firstItem="g64-ga-qLx" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.075" id="yih-n5-D68"/>
                             <constraint firstItem="pCG-Ir-o2q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="yjH-9r-ZKb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="foodBagView" destination="hgH-lE-6FO" id="hwf-Mr-N4w"/>
                         <outlet property="foodLevel" destination="kiY-M6-e8J" id="Wo6-bK-FPj"/>
                         <outlet property="foodLevelLabel" destination="Fcg-lp-gCV" id="TkU-7b-UaY"/>
                         <outlet property="happinessLabel" destination="bsJ-Wa-Vn1" id="DhX-uJ-AIM"/>
                         <outlet property="happinessLevel" destination="oWo-7O-Nrx" id="bv0-ZG-Fc5"/>
                         <outlet property="petBox" destination="XLq-Y2-Aej" id="Ktu-vi-xEt"/>
-                        <outlet property="petImage" destination="LPs-Fv-Y63" id="AJv-ke-Od2"/>
+                        <outlet property="petImageView" destination="LPs-Fv-Y63" id="AJv-ke-Od2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -209,5 +220,6 @@
     </scenes>
     <resources>
         <image name="Dog" width="100" height="100"/>
+        <image name="Food Bag" width="514" height="640"/>
     </resources>
 </document>

@@ -5,6 +5,10 @@
 //  Created by labuser on 6/22/18.
 //  Copyright © 2018 wustl. All rights reserved.
 //
+// Credits
+// 1. Food bag image from OpenClipart-Vectors (https://pixabay.com/en/vegetables-paper-bag-carrots-576881/)
+// 2. Learned how to move images around the screen from "How to Make an Image Move with Touch (Swift in Xcode)" (https://www.youtube.com/watch?v=4D2KNOFtowQ). Specifically, from a comment from user "Bored Person" who provided an update to the code from the video for the latest version of Swift.
+// 3. Learned how to make a delay in Swift from Stack Overflow (https://stackoverflow.com/questions/38031137/how-to-program-a-delay-in-swift-3)
 
 import UIKit
 
@@ -24,14 +28,51 @@ class ViewController: UIViewController {
     let bunny = Bunny()
     let fish = Fish()
     var currentPet = Animal.Dog
+    var foodBagLocation = CGPoint(x: 0, y: 0)
+    var defaultBagLocation = CGPoint(x: 0, y: 0)
+    var hasFed = false
     
     @IBOutlet weak var happinessLevel: DisplayView!
     @IBOutlet weak var foodLevel: DisplayView!
     @IBOutlet weak var petBox: UIView!
     @IBOutlet weak var happinessLabel: UILabel!
     @IBOutlet weak var foodLevelLabel: UILabel!
-    @IBOutlet weak var petImage: UIImageView!
+    @IBOutlet weak var petImageView: UIImageView!
+    @IBOutlet weak var foodBagView: UIImageView!
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            foodBagLocation = touch.location(in: self.petBox)
+            foodBagView.center = foodBagLocation
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            foodBagLocation = touch.location(in: self.petBox)
+            foodBagView.center = foodBagLocation
+            if let petImage = petImageView.image {
+                if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !foodBagView.isHidden {
+                    petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
+                        pet.feed()
+                        foodLevelLabel.text = "fed: \(pet.getTimesFed())"
+                        foodLevel.animateValue(to: pet.getFoodLevel())
+                    })
+                    foodBagView.isHidden = true
+                }
+            }
+        }
+    }
+    
+    func checkEating(timeStamp : Date) {
+        print("pet: \(petImageView.center)")
+        print("food: \(foodBagView.center)")
+        print("distance: \(distance(food: foodBagView.center, pet: petImageView.center))")
+    }
+    
+    func distance(food : CGPoint, pet : CGPoint) -> CGFloat {
+        return sqrt(pow(pet.y - food.y, 2) + pow(pet.x - food.x, 2))
+    }
     
     @IBAction func fishButtonPressed(_ sender: Any) {
         currentPet = .Fish
@@ -68,11 +109,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func feedButtonPressed(_ sender: Any) {
-        petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
-            pet.feed()
-            foodLevelLabel.text = "fed: \(pet.getTimesFed())"
-            foodLevel.animateValue(to: pet.getFoodLevel())
-        })
+        foodBagView.center = defaultBagLocation
+        foodBagView.isHidden = false
     }
     
     func petFunctionHelper(animal : Animal, _ f : (Pet) -> Void) {
@@ -91,7 +129,7 @@ class ViewController: UIViewController {
     }
     
     func viewPet(pet : Pet) {
-        petImage.image = pet.getImage()
+        petImageView.image = pet.getImage()
         petBox.backgroundColor = pet.getColor()
         happinessLevel.color = pet.getColor()
         foodLevel.color = pet.getColor()
@@ -105,6 +143,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         petFunctionHelper(animal: currentPet, viewPet)
+        foodBagView.isUserInteractionEnabled = true
+        defaultBagLocation = foodBagView.center;
     }
 
     override func didReceiveMemoryWarning() {

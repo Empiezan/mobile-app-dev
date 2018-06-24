@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		681FD2F120DED24D00F11D15 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681FD2F020DED24D00F11D15 /* Pet.swift */; };
+		6837F6A420E024250091CE04 /* FoodBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6837F6A320E024250091CE04 /* FoodBag.swift */; };
 		6852F7AB20DD72000096E6FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852F7AA20DD72000096E6FC /* AppDelegate.swift */; };
 		6852F7AD20DD72000096E6FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852F7AC20DD72000096E6FC /* ViewController.swift */; };
 		6852F7B020DD72000096E6FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6852F7AE20DD72000096E6FC /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		681FD2F020DED24D00F11D15 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		6837F6A320E024250091CE04 /* FoodBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodBag.swift; sourceTree = "<group>"; };
 		6852F7A720DD72000096E6FC /* MichaelChang-Lab2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MichaelChang-Lab2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6852F7AA20DD72000096E6FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6852F7AC20DD72000096E6FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				68DD4A6F20DEE172003BB116 /* Bird.swift */,
 				68DD4A7120DEE1A0003BB116 /* Bunny.swift */,
 				68DD4A7320DEE1F6003BB116 /* Fish.swift */,
+				6837F6A320E024250091CE04 /* FoodBag.swift */,
 			);
 			path = "MichaelChang-Lab2";
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				6852F7AD20DD72000096E6FC /* ViewController.swift in Sources */,
 				68DD4A6C20DEE0F5003BB116 /* Dog.swift in Sources */,
 				68DD4A7420DEE1F6003BB116 /* Fish.swift in Sources */,
+				6837F6A420E024250091CE04 /* FoodBag.swift in Sources */,
 				6852F7AB20DD72000096E6FC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class Pet {
+    private var food = FoodBag()
     private var image : UIImage
     private var color : UIColor
     private var happiness : Int
@@ -26,15 +27,23 @@ class Pet {
         self.timesFed = 0
         self.timesPlayed = 0
     }
+    
+    func getFoodBag() -> FoodBag {
+        return food
+    }
+    
+    func eat() {
+        food.eatFromBag()
+    }
 
-    func feed () {
+    func feed() {
         timesFed += 1
         if foodLevel < 10 {
             foodLevel += stepValue
         }
     }
     
-    func play () {
+    func play() {
         if foodLevel > 0 {
             timesPlayed += 1
             if happiness < 10 {
