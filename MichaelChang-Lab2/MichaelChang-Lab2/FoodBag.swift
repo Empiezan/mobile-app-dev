@@ -5,34 +5,65 @@
 //  Created by labuser on 6/24/18.
 //  Copyright © 2018 wustl. All rights reserved.
 //
+// Credits
+// 1. How to index elements of a tuple (https://stackoverflow.com/questions/34573458/how-to-get-the-the-first-element-of-a-tuple-in-an-array-in-swift)
 
 import Foundation
 import UIKit
 
-class FoodBag : UIImageView{
-    private var size = 3
-    private var location = CGPoint(x: 0, y: 0)
+class FoodBag {
+    private static var defaultFoodLocation : (Float, Float)!
     
-    init() {
-        super.init(image: #imageLiteral(resourceName: "Food Bag"))
+    private var currentFoodLocation : (Float, Float)!
+    private var eaten : Bool
+    
+    init(defaultFoodLocation : (Float, Float), image: UIImage) {
+        FoodBag.defaultFoodLocation = defaultFoodLocation
+        self.currentFoodLocation = defaultFoodLocation
+        self.eaten = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func isEmpty() -> Bool {
+        return eaten
     }
     
-    func getLocation() -> CGPoint {
-        return location
+    static func getDefaultFoodLocation() -> (Float, Float) {
+        return defaultFoodLocation
     }
     
-    func setLocation(loc : CGPoint) {
-        location = loc
+    func getFoodLocation() -> (Float, Float) {
+        return currentFoodLocation
     }
     
+    func setFoodLocation(foodLocation: (Float, Float)) {
+        currentFoodLocation = foodLocation
+    }
+
     func eatFromBag() {
-        if size > 0 {
-            size -= 1
+        eaten = true
+    }
+    
+    func buyNewBag() {
+        eaten = false
+    }
+    
+    func setFoodBagView(view : UIImageView) -> UIImageView {
+        if let superView = view.superview {
+            if eaten {
+                view.alpha = 0
+                view.isUserInteractionEnabled = false
+                view.center = CGPoint(x: CGFloat(FoodBag.defaultFoodLocation.0) * superView.frame.width, y: CGFloat(FoodBag.defaultFoodLocation.1) * superView.frame.height)
+            }
+            else {
+                view.alpha = 1
+                view.isUserInteractionEnabled = true
+                view.center = CGPoint(x: CGFloat(currentFoodLocation.0) * superView.frame.width, y: CGFloat(currentFoodLocation.1) * superView.frame.height)
+            }
         }
-        print(size)
+        else {
+            view.alpha = 0
+            view.isUserInteractionEnabled = false
+        }
+        return view
     }
 }

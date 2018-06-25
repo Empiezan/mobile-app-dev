@@ -7,8 +7,7 @@
 //
 // Credits
 // 1. Food bag image from OpenClipart-Vectors (https://pixabay.com/en/vegetables-paper-bag-carrots-576881/)
-// 2. Learned how to move images around the screen from "How to Make an Image Move with Touch (Swift in Xcode)" (https://www.youtube.com/watch?v=4D2KNOFtowQ). Specifically, from a comment from user "Bored Person" who provided an update to the code from the video for the latest version of Swift.
-// 3. Learned how to make a delay in Swift from Stack Overflow (https://stackoverflow.com/questions/38031137/how-to-program-a-delay-in-swift-3)
+// 2. Learned how to move images around the screen from "How to Make an Image Move with Touch (Swift in Xcode)" (https://www.youtube.com/watch?v=4D2KNOFtowQ). Specifically, from a comment from user "Bored Person" who provided an update to the code from the video for Swift 4.
 
 import UIKit
 
@@ -22,15 +21,14 @@ class ViewController: UIViewController {
         case Fish
     }
     
-    let dog = Dog()
-    let cat = Cat()
-    let bird = Bird()
-    let bunny = Bunny()
-    let fish = Fish()
+    var dog : Dog!
+    var cat : Cat!
+    var bird : Bird!
+    var bunny : Bunny!
+    var fish : Fish!
     var currentPet = Animal.Dog
     var foodBagLocation = CGPoint(x: 0, y: 0)
     var defaultBagLocation = CGPoint(x: 0, y: 0)
-    var hasFed = true
     
     @IBOutlet weak var happinessLevel: DisplayView!
     @IBOutlet weak var foodLevel: DisplayView!
@@ -39,6 +37,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodLevelLabel: UILabel!
     @IBOutlet weak var petImageView: UIImageView!
     @IBOutlet weak var foodBagView: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        setDefaultFoodPositions()
+        petFunctionHelper(animal: currentPet, viewPet)
+        foodBagView.alpha = 0
+        foodBagView.isUserInteractionEnabled = false
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -54,26 +66,24 @@ class ViewController: UIViewController {
             if foodBagView.isUserInteractionEnabled {
                 foodBagLocation = touch.location(in: self.petBox)
                 foodBagView.center = foodBagLocation
-                if let petImage = petImageView.image {
-                    if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !hasFed {
-                        petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
-                            hasFed = true
-                            foodBagView.alpha = 0
-                            foodBagView.isUserInteractionEnabled = false
-                            pet.feed()
-                            foodLevelLabel.text = "fed: \(pet.getTimesFed())"
-                            foodLevel.animateValue(to: pet.getFoodLevel())
-                        })
-                    }
-                }
+                    petFunctionHelper(animal: currentPet, tryToEat)
             }
         }
     }
     
-    func checkEating(timeStamp : Date) {
-        print("pet: \(petImageView.center)")
-        print("food: \(foodBagView.center)")
-        print("distance: \(distance(food: foodBagView.center, pet: petImageView.center))")
+    func tryToEat(pet : Pet) {
+        if let petImage = petImageView.image {
+            if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !pet.hasBeenFed {
+                petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
+                    pet.feed()
+                    foodLevelLabel.text = "fed: \(pet.getTimesFed())"
+                    foodLevel.animateValue(to: pet.getFoodLevel())
+                    
+                    pet.eat()
+                    foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
+                })
+            }
+        }
     }
     
     func distance(food : CGPoint, pet : CGPoint) -> CGFloat {
@@ -115,10 +125,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func feedButtonPressed(_ sender: Any) {
-        foodBagView.isUserInteractionEnabled = true
-        foodBagView.center = defaultBagLocation
-        foodBagView.alpha = 1
-        hasFed = false
+        petFunctionHelper(animal: currentPet, resetBagLocation)
+    }
+    
+    func resetBagLocation(pet : Pet) {
+        //combine hasbeenfed and buynewbag?
+        pet.hasBeenFed = false
+        pet.getFoodBag().buyNewBag()
+        foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
     }
     
     func petFunctionHelper(animal : Animal, _ f : (Pet) -> Void) {
@@ -137,6 +151,7 @@ class ViewController: UIViewController {
     }
     
     func viewPet(pet : Pet) {
+        petFunctionHelper(animal: currentPet, showFood)
         petImageView.image = pet.getImage()
         petBox.backgroundColor = pet.getColor()
         happinessLevel.color = pet.getColor()
@@ -147,18 +162,19 @@ class ViewController: UIViewController {
         foodLevelLabel.text = "fed: \(pet.getTimesFed())"
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        petFunctionHelper(animal: currentPet, viewPet)
-        defaultBagLocation = foodBagView.center;
-        foodBagView.alpha = 0
-        foodBagView.isUserInteractionEnabled = false
+    func showFood(pet : Pet) {
+        foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
+        print(pet.getFoodBag().isEmpty())
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setDefaultFoodPositions() {
+        let xLocation = Float((petBox.frame.width - foodBagView.center.x) / petBox.frame.width)
+        let yLocation = Float((petBox.frame.height - foodBagView.center.y) / petBox.frame.height)
+        
+        dog = Dog(defaultFoodLocation: (xLocation, yLocation))
+        cat = Cat(defaultFoodLocation: (xLocation, yLocation))
+        bird = Bird(defaultFoodLocation: (xLocation, yLocation))
+        bunny = Bunny(defaultFoodLocation: (xLocation, yLocation))
+        fish = Fish(defaultFoodLocation: (xLocation, yLocation))
     }
 }
-

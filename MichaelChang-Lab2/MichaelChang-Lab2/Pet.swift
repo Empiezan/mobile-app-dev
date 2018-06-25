@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Pet {
-    private var food = FoodBag()
+    private var food : FoodBag
     private var image : UIImage
     private var color : UIColor
     private var happiness : Int
@@ -18,14 +18,25 @@ class Pet {
     private var timesFed : Int
     private var timesPlayed : Int
     private let stepValue : Int = 1
+    var hasBeenFed = true
     
-    init (color : UIColor, image: UIImage) {
+    private static let DEFAULT_HAPPINESS = 5
+    private static let DEFAULT_FOOD_LEVEL = 5
+    private static let DEFAULT_TIMES_FED = 0
+    private static let DEFAULT_TIMES_PLAYED = 0
+    
+    init (color : UIColor, image: UIImage, food: FoodBag) {
+        self.food = food
         self.image = image
         self.color = color
-        self.happiness = 5
-        self.foodLevel = 5
-        self.timesFed = 0
-        self.timesPlayed = 0
+        self.happiness = Pet.DEFAULT_HAPPINESS
+        self.foodLevel = Pet.DEFAULT_FOOD_LEVEL
+        self.timesFed = Pet.DEFAULT_TIMES_FED
+        self.timesPlayed = Pet.DEFAULT_TIMES_PLAYED
+    }
+    
+    static func getDefaultFoodLocation() -> (Float, Float) {
+        return FoodBag.getDefaultFoodLocation()
     }
     
     func getFoodBag() -> FoodBag {
@@ -33,6 +44,7 @@ class Pet {
     }
     
     func eat() {
+        hasBeenFed = true
         food.eatFromBag()
     }
 

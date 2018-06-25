@@ -30,7 +30,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Food Bag" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-lE-6FO">
-                                        <rect key="frame" x="8" y="8" width="97" height="97"/>
+                                        <rect key="frame" x="144" y="290" width="87" height="87"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="hgH-lE-6FO" secondAttribute="height" multiplier="1:1" id="Dxp-Yw-P1Y"/>
                                         </constraints>
@@ -38,11 +38,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.12734011270000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="centerX" secondItem="XLq-Y2-Aej" secondAttribute="centerX" id="1Lu-eh-8v8"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="height" secondItem="XLq-Y2-Aej" secondAttribute="height" multiplier="0.5" id="40S-85-7Fp"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerY" secondItem="XLq-Y2-Aej" secondAttribute="centerY" id="GqA-Wd-6ib"/>
-                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="height" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="0.5" id="ZkU-Xg-UOR"/>
-                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="leading" secondItem="XLq-Y2-Aej" secondAttribute="leading" constant="8" id="gHJ-GC-Px1"/>
-                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="top" secondItem="XLq-Y2-Aej" secondAttribute="top" constant="8" id="viB-yN-YSc"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="height" secondItem="LPs-Fv-Y63" secondAttribute="height" multiplier="0.45" id="ZkU-Xg-UOR"/>
+                                    <constraint firstItem="hgH-lE-6FO" firstAttribute="top" secondItem="LPs-Fv-Y63" secondAttribute="bottom" constant="-0.5" id="bli-LM-kOG"/>
+                                    <constraint firstAttribute="bottom" secondItem="hgH-lE-6FO" secondAttribute="bottom" constant="10" id="qU0-ZC-dhX"/>
                                     <constraint firstItem="LPs-Fv-Y63" firstAttribute="centerX" secondItem="XLq-Y2-Aej" secondAttribute="centerX" id="yfO-A7-62k"/>
                                 </constraints>
                             </view>
