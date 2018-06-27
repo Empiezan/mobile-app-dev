@@ -13,15 +13,16 @@ class Pet {
     private var food : FoodBag
     private var image : UIImage
     private var color : UIColor
-    private var happiness : Int
-    private var foodLevel : Int
+    private var happiness : CGFloat
+    private var foodLevel : CGFloat
     private var timesFed : Int
     private var timesPlayed : Int
-    private let stepValue : Int = 1
-    var hasEaten = true
+    private let stepValue : CGFloat = 0.1
     
-    private static let DEFAULT_HAPPINESS = 5
-    private static let DEFAULT_FOOD_LEVEL = 5
+    private static let DEFAULT_HAPPINESS : CGFloat = 0.5
+    private static let DEFAULT_FOOD_LEVEL : CGFloat = 0.5
+    private static let MAXIMUM_HAPPINESS : CGFloat = 1.0
+    private static let MAXIMUM_FOOD_LEVEL : CGFloat = 1.0
     private static let DEFAULT_TIMES_FED = 0
     private static let DEFAULT_TIMES_PLAYED = 0
     
@@ -35,10 +36,6 @@ class Pet {
         self.timesPlayed = Pet.DEFAULT_TIMES_PLAYED
     }
     
-    static func getDefaultFoodLocation() -> (Float, Float) {
-        return FoodBag.getDefaultFoodLocation()
-    }
-    
     func getFoodBag() -> FoodBag {
         return food
     }
@@ -46,30 +43,22 @@ class Pet {
     func eat() {
         food.eatFromBag()
         timesFed += 1
-        if foodLevel < 10 {
+        if foodLevel < Pet.MAXIMUM_FOOD_LEVEL {
             foodLevel += stepValue
         }
-        hasEaten = true
-    }
-
-    func feed() {
-        hasEaten = false
     }
     
     func play() {
         if foodLevel > 0 {
             timesPlayed += 1
-            if happiness < 10 {
+            if happiness < Pet.MAXIMUM_HAPPINESS {
                 happiness += stepValue
             }
             foodLevel -= stepValue
         }
-        print(foodLevel)
-        print(happiness)
     }
     
     func getImage() -> UIImage {
-        //how to safely unwrap this?
         return image
     }
     
@@ -78,11 +67,11 @@ class Pet {
     }
     
     func getHappiness() -> CGFloat {
-        return CGFloat(Float(happiness)/10)
+        return happiness
     }
     
     func getFoodLevel() -> CGFloat {
-        return CGFloat(Float(foodLevel)/10)
+        return foodLevel
     }
     
     func getTimesPlayed() -> Int {

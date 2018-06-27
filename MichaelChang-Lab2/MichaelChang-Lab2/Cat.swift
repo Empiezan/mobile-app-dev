@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Cat : Pet {
-    init(defaultFoodLocation: (Float, Float)) {
-        super.init(color: UIColor.cyan, image: #imageLiteral(resourceName: "Cat"), food: FoodBag(defaultFoodLocation: defaultFoodLocation, image: #imageLiteral(resourceName: "Food Bag")))
+    init() {
+        super.init(color: UIColor.cyan, image: #imageLiteral(resourceName: "Cat"), food: FoodBag(image: #imageLiteral(resourceName: "Food Bag")))
     }
 }
