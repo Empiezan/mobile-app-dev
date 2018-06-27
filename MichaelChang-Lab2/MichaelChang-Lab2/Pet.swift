@@ -18,7 +18,7 @@ class Pet {
     private var timesFed : Int
     private var timesPlayed : Int
     private let stepValue : Int = 1
-    var hasBeenFed = true
+    var hasEaten = true
     
     private static let DEFAULT_HAPPINESS = 5
     private static let DEFAULT_FOOD_LEVEL = 5
@@ -44,15 +44,16 @@ class Pet {
     }
     
     func eat() {
-        hasBeenFed = true
         food.eatFromBag()
-    }
-
-    func feed() {
         timesFed += 1
         if foodLevel < 10 {
             foodLevel += stepValue
         }
+        hasEaten = true
+    }
+
+    func feed() {
+        hasEaten = false
     }
     
     func play() {

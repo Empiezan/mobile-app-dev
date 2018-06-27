@@ -13,7 +13,6 @@ import UIKit
 
 class FoodBag {
     private static var defaultFoodLocation : (Float, Float)!
-    
     private var currentFoodLocation : (Float, Float)!
     private var eaten : Bool
     
@@ -43,26 +42,31 @@ class FoodBag {
         eaten = true
     }
     
-    func buyNewBag() {
+    func buyNewBag(view : UIImageView) -> UIImageView {
         eaten = false
+        if let superView = view.superview {
+            print("resetting to default location")
+            view.alpha = 1
+            view.isUserInteractionEnabled = true
+            view.center = CGPoint(x: CGFloat(FoodBag.defaultFoodLocation.0) * superView.frame.width, y: CGFloat(FoodBag.defaultFoodLocation.1) * superView.frame.height)
+        }
+        return view
     }
     
     func setFoodBagView(view : UIImageView) -> UIImageView {
         if let superView = view.superview {
             if eaten {
+                print("hiding bag")
                 view.alpha = 0
-                view.isUserInteractionEnabled = false
-                view.center = CGPoint(x: CGFloat(FoodBag.defaultFoodLocation.0) * superView.frame.width, y: CGFloat(FoodBag.defaultFoodLocation.1) * superView.frame.height)
+//                view.isUserInteractionEnabled = false
+//                view.center = CGPoint(x: CGFloat(FoodBag.defaultFoodLocation.0) * superView.frame.width, y: CGFloat(FoodBag.defaultFoodLocation.1) * superView.frame.height)
             }
             else {
+                print("resetting to last seen location")
                 view.alpha = 1
                 view.isUserInteractionEnabled = true
                 view.center = CGPoint(x: CGFloat(currentFoodLocation.0) * superView.frame.width, y: CGFloat(currentFoodLocation.1) * superView.frame.height)
             }
-        }
-        else {
-            view.alpha = 0
-            view.isUserInteractionEnabled = false
         }
         return view
     }

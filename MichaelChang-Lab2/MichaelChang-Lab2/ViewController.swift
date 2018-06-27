@@ -43,8 +43,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         setDefaultFoodPositions()
         petFunctionHelper(animal: currentPet, viewPet)
-        foodBagView.alpha = 0
-        foodBagView.isUserInteractionEnabled = false
+//        foodBagView.alpha = 0
+//        foodBagView.isUserInteractionEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +56,10 @@ class ViewController: UIViewController {
         if let touch = touches.first {
             if foodBagView.isUserInteractionEnabled {
                 foodBagLocation = touch.location(in: self.petBox)
-                foodBagView.center = foodBagLocation
+                if foodBagView.frame.contains(foodBagLocation) {
+                    foodBagView.center = foodBagLocation
+                    petFunctionHelper(animal: currentPet, tryToEat)
+                }
             }
         }
     }
@@ -65,21 +68,63 @@ class ViewController: UIViewController {
         if let touch = touches.first {
             if foodBagView.isUserInteractionEnabled {
                 foodBagLocation = touch.location(in: self.petBox)
-                foodBagView.center = foodBagLocation
-                    petFunctionHelper(animal: currentPet, tryToEat)
+                if foodBagView.frame.contains(foodBagLocation) && bagIsInPetBox() {
+                    foodBagView.center = foodBagLocation
+                        petFunctionHelper(animal: currentPet, tryToEat)
+                }
             }
         }
     }
     
+    func bagIsInPetBox() -> Bool {
+        let halfBagWidth = foodBagView.frame.size.width / 2
+        let halfBagHeight = foodBagView.frame.size.height / 2
+        
+        let bagTop = foodBagView.center.y - halfBagHeight
+        let bagBottom = foodBagView.center.y + halfBagHeight
+        let bagLeft = foodBagView.center.x - halfBagWidth
+        let bagRight = foodBagView.center.x + halfBagWidth
+        
+        let petBoxTop : CGFloat = 0
+        let petBoxBottom = foodBagView.center.y + halfBagHeight
+        let petBoxLeft : CGFloat = 0
+        let petBoxRight = petBox.center.x + halfBagWidth
+        
+//        let topLeftCorner = CGPoint(x: left, y: top)
+//        let topRightCorner = CGPoint(x: right, y: top)
+//        let bottomLeftCorner = CGPoint(x: left, y: bottom)
+//        let bottomRightCorner = CGPoint(x: right, y: bottom)
+        
+        if bagTop <= petBoxTop {
+            foodBagView.center.y += petBox.frame.size.height / 20
+            return false
+        }
+        if bagBottom >= petBoxBottom {
+            foodBagView.center.y -= petBox.frame.size.height / 20
+            return false
+        }
+        if bagLeft <= petBoxLeft {
+            foodBagView.center.x += petBox.frame.size.width / 20
+            return false
+        }
+        if bagRight >= petBoxRight {
+            foodBagView.center.x -= petBox.frame.size.width / 20
+            return false
+        }
+        
+        foodBagLocation = foodBagView.center
+        
+        return true
+    }
+    
     func tryToEat(pet : Pet) {
         if let petImage = petImageView.image {
-            if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !pet.hasBeenFed {
+            if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.width/3 && !pet.hasEaten {
                 petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
-                    pet.feed()
+//                    pet.feed()
+                    pet.eat()
                     foodLevelLabel.text = "fed: \(pet.getTimesFed())"
                     foodLevel.animateValue(to: pet.getFoodLevel())
-                    
-                    pet.eat()
                     foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
                 })
             }
@@ -91,26 +136,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func fishButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Fish
         petFunctionHelper(animal: .Fish, viewPet)
     }
     
     @IBAction func bunnyButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Bunny
         petFunctionHelper(animal: .Bunny, viewPet)
     }
     
     @IBAction func birdButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Bird
         petFunctionHelper(animal: .Bird, viewPet)
     }
     
     @IBAction func catButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Cat
         petFunctionHelper(animal: .Cat, viewPet)
     }
     
     @IBAction func dogButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Dog
         petFunctionHelper(animal: .Dog, viewPet)
     }
@@ -130,9 +180,8 @@ class ViewController: UIViewController {
     
     func resetBagLocation(pet : Pet) {
         //combine hasbeenfed and buynewbag?
-        pet.hasBeenFed = false
-        pet.getFoodBag().buyNewBag()
-        foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
+        pet.hasEaten = false
+        foodBagView = pet.getFoodBag().buyNewBag(view: foodBagView)
     }
     
     func petFunctionHelper(animal : Animal, _ f : (Pet) -> Void) {
@@ -162,14 +211,21 @@ class ViewController: UIViewController {
         foodLevelLabel.text = "fed: \(pet.getTimesFed())"
     }
     
+    func recordFoodLocation(pet : Pet) {
+//        if !pet.hasEaten {
+            pet.getFoodBag().setFoodLocation(foodLocation: (Float(foodBagLocation.x)/Float(petBox.frame.width),Float(foodBagLocation.y)/Float(petBox.frame.height)))
+//        }
+    }
+    
     func showFood(pet : Pet) {
+        foodBagLocation = CGPoint(x: CGFloat(pet.getFoodBag().getFoodLocation().0) * petBox.frame.width, y: CGFloat(pet.getFoodBag().getFoodLocation().1) * petBox.frame.height)
         foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
-        print(pet.getFoodBag().isEmpty())
+//        print(pet.getFoodBag().isEmpty())
     }
     
     func setDefaultFoodPositions() {
-        let xLocation = Float((petBox.frame.width - foodBagView.center.x) / petBox.frame.width)
-        let yLocation = Float((petBox.frame.height - foodBagView.center.y) / petBox.frame.height)
+        let xLocation = Float(abs(foodBagView.center.x) / petBox.frame.width)
+        let yLocation = Float(abs(foodBagView.center.y) / petBox.frame.height)
         
         dog = Dog(defaultFoodLocation: (xLocation, yLocation))
         cat = Cat(defaultFoodLocation: (xLocation, yLocation))
