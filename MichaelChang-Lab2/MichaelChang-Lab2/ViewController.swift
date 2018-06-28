@@ -117,12 +117,14 @@ class ViewController: UIViewController {
     
     func tryToEat(pet : Pet) {
         if let petImage = petImageView.image {
-            if distance(food : foodBagView.center, pet : petImageView.center) < petImage.size.height && !pet.getFoodBag().isEmpty() {
+            if distance(food : foodBagView.center, pet : petImageView.center) < (1.0/3) * petImage.size.height && !pet.getFoodBag().isEmpty() {
                 petFunctionHelper(animal: currentPet, { (pet: Pet) -> Void in
-                    pet.eat()
-                    foodLevelLabel.text = "fed: \(pet.getTimesFed())"
-                    foodLevel.animateValue(to: pet.getFoodLevel())
-                    foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
+                    if !pet.isFull() {
+                        pet.eat()
+                        foodLevelLabel.text = "fed: \(pet.getTimesFed())"
+                        foodLevel.animateValue(to: pet.getFoodLevel())
+                        foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
+                    }
                 })
             }
         }
@@ -147,7 +149,9 @@ class ViewController: UIViewController {
         if let touch = touches.first {
             let x = touch.location(in: self.petBox).x
             let y = touch.location(in: self.petBox).y
-            keepBagInBox(x: x, y: y)
+            if foodBagView.frame.contains(CGPoint(x: x, y: y)) {
+                keepBagInBox(x: x, y: y)
+            }
             petFunctionHelper(animal: currentPet, tryToEat)
         }
     }

@@ -13,16 +13,16 @@ class Pet {
     private var food : FoodBag
     private var image : UIImage
     private var color : UIColor
-    private var happiness : CGFloat
-    private var foodLevel : CGFloat
+    private var happiness : Int
+    private var foodLevel : Int
     private var timesFed : Int
     private var timesPlayed : Int
     private let stepValue : CGFloat = 0.1
     
-    private static let DEFAULT_HAPPINESS : CGFloat = 0.5
-    private static let DEFAULT_FOOD_LEVEL : CGFloat = 0.5
-    private static let MAXIMUM_HAPPINESS : CGFloat = 1.0
-    private static let MAXIMUM_FOOD_LEVEL : CGFloat = 1.0
+    private static let DEFAULT_HAPPINESS : Int = 5
+    private static let DEFAULT_FOOD_LEVEL : Int = 5
+    private static let MAXIMUM_HAPPINESS : Int = 10
+    private static let MAXIMUM_FOOD_LEVEL : Int = 10
     private static let DEFAULT_TIMES_FED = 0
     private static let DEFAULT_TIMES_PLAYED = 0
     
@@ -36,15 +36,19 @@ class Pet {
         self.timesPlayed = Pet.DEFAULT_TIMES_PLAYED
     }
     
+    func isFull() -> Bool {
+        return foodLevel >= 10
+    }
+    
     func getFoodBag() -> FoodBag {
         return food
     }
     
     func eat() {
-        food.eatFromBag()
-        timesFed += 1
         if foodLevel < Pet.MAXIMUM_FOOD_LEVEL {
-            foodLevel += stepValue
+            food.eatFromBag()
+            timesFed += 1
+            foodLevel += 1
         }
     }
     
@@ -52,9 +56,9 @@ class Pet {
         if foodLevel > 0 {
             timesPlayed += 1
             if happiness < Pet.MAXIMUM_HAPPINESS {
-                happiness += stepValue
+                happiness += 1
             }
-            foodLevel -= stepValue
+            foodLevel -= 1
         }
     }
     
@@ -67,11 +71,11 @@ class Pet {
     }
     
     func getHappiness() -> CGFloat {
-        return happiness
+        return CGFloat(Float(happiness)/10)
     }
     
     func getFoodLevel() -> CGFloat {
-        return foodLevel
+        return CGFloat(Float(foodLevel)/10)
     }
     
     func getTimesPlayed() -> Int {

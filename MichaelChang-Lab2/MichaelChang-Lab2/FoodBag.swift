@@ -13,13 +13,13 @@ import UIKit
 
 class FoodBag {
     
-    static var defaultLocationPlaceholder : (Float, Float) = (0,0)
+    static var defaultLocationPlaceholder : (Float, Float) = (50,50)
     static var defaultFoodLocation : (Float, Float) {
         get {
             return defaultLocationPlaceholder
         }
     }
-    private var currentFoodLocation : (Float, Float)!
+    private var currentFoodLocation : (Float, Float) = (50,50)
     private var eaten : Bool
     
     init(image: UIImage) {
