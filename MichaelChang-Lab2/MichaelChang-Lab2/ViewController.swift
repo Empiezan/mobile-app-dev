@@ -76,7 +76,6 @@ class ViewController: UIViewController {
     
     func showFood(pet : Pet) {
         foodBagLocation = CGPoint(x: CGFloat(pet.getFoodBag().getFoodLocation().0) * petBox.frame.width, y: CGFloat(pet.getFoodBag().getFoodLocation().1) * petBox.frame.height)
-        keepBagInBox(x: foodBagLocation.x, y: foodBagLocation.y)
         foodBagView = pet.getFoodBag().setFoodBagView(view: foodBagView)
     }
     
@@ -98,7 +97,18 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        if let touch = touches.first {
+            if foodBagView.isUserInteractionEnabled {
+                foodBagLocation = touch.location(in: self.petBox)
+                if foodBagView.frame.contains(foodBagLocation) {
+                    let x = touch.location(in: self.petBox).x
+                    let y = touch.location(in: self.petBox).y
+                    keepBagInBox(x: x, y: y)
+                    foodBagView.center = foodBagLocation
+                    petFunctionHelper(animal: currentPet, tryToEat)
+                }
+            }
+        }
     }
     
     func distance(food : CGPoint, pet : CGPoint) -> CGFloat {
@@ -128,7 +138,8 @@ class ViewController: UIViewController {
                     let x = touch.location(in: self.petBox).x
                     let y = touch.location(in: self.petBox).y
                     keepBagInBox(x: x, y: y)
-                    petFunctionHelper(animal: currentPet, tryToEat)
+                    foodBagView.center = foodBagLocation
+                        petFunctionHelper(animal: currentPet, tryToEat)
                 }
             }
         }
@@ -146,6 +157,7 @@ class ViewController: UIViewController {
     }
     
     func viewPet(pet : Pet) {
+        petFunctionHelper(animal: currentPet, showFood)
         petImageView.image = pet.getImage()
         petBox.backgroundColor = pet.getColor()
         happinessLevel.color = pet.getColor()
@@ -154,30 +166,38 @@ class ViewController: UIViewController {
         foodLevel.animateValue(to: pet.getFoodLevel())
         happinessLabel.text = "played: \(pet.getTimesPlayed())"
         foodLevelLabel.text = "fed: \(pet.getTimesFed())"
-        petFunctionHelper(animal: currentPet, showFood)
     }
-
+    
+    func recordFoodLocation(pet : Pet) {
+        pet.getFoodBag().setFoodLocation(foodLocation: (Float(foodBagLocation.x)/Float(petBox.frame.width),Float(foodBagLocation.y)/Float(petBox.frame.height)))
+    }
+    
     @IBAction func fishButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Fish
         petFunctionHelper(animal: .Fish, viewPet)
     }
     
     @IBAction func bunnyButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Bunny
         petFunctionHelper(animal: .Bunny, viewPet)
     }
     
     @IBAction func birdButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Bird
         petFunctionHelper(animal: .Bird, viewPet)
     }
     
     @IBAction func catButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Cat
         petFunctionHelper(animal: .Cat, viewPet)
     }
     
     @IBAction func dogButtonPressed(_ sender: Any) {
+        petFunctionHelper(animal: currentPet, recordFoodLocation)
         currentPet = .Dog
         petFunctionHelper(animal: .Dog, viewPet)
     }

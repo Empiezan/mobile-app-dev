@@ -63,14 +63,9 @@ class FoodBag {
     
     func setFoodBagView(view : UIImageView) -> UIImageView {
         if let superView = view.superview {
-            if eaten {
-                view.alpha = 0
-            }
-            else {
-                view.alpha = 1
-                view.isUserInteractionEnabled = true
-                view.center = CGPoint(x: CGFloat(currentFoodLocation.0) * superView.frame.width, y: CGFloat(currentFoodLocation.1) * superView.frame.height)
-            }
+            view.alpha = 0
+            view.isUserInteractionEnabled = false
+            view.center = CGPoint(x: CGFloat(FoodBag.defaultFoodLocation.0) * superView.frame.width, y: CGFloat(FoodBag.defaultFoodLocation.1) * superView.frame.height)
         }
         return view
     }
