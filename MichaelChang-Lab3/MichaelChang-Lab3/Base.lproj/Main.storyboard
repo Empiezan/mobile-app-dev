@@ -16,7 +16,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MichaelChang_Lab3" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="CanvasView" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -95,17 +95,26 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssh-Mt-NQy" customClass="CanvasView" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="505"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ae6-bf-sRA" secondAttribute="bottom" constant="16" id="43f-Ot-QLX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ae6-bf-sRA" secondAttribute="trailing" constant="16" id="49y-NT-Sbk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ae6-bf-sRA" secondAttribute="bottom" constant="16" id="7FE-Eh-vD6"/>
+                            <constraint firstItem="Ssh-Mt-NQy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EQw-K9-aOf"/>
+                            <constraint firstItem="Ssh-Mt-NQy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KKS-A2-jJh"/>
                             <constraint firstItem="Ae6-bf-sRA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T1E-pN-HvM"/>
+                            <constraint firstItem="Ae6-bf-sRA" firstAttribute="top" secondItem="Ssh-Mt-NQy" secondAttribute="bottom" constant="8" id="c2g-QW-v7G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ssh-Mt-NQy" secondAttribute="trailing" id="vWL-Ux-sEV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hFC-bh-fAT">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" id="8Rf-N5-Rhk">
                             <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="2" maxValue="40" id="NvD-s8-yCb">
                                 <rect key="frame" x="16" y="5" width="83" height="34"/>
@@ -139,17 +148,34 @@
                                     <action selector="clearCanvas:" destination="BYZ-38-t0r" id="Dhu-vr-Q40"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem style="plain" id="PDa-7o-45Q">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IJz-CR-zgc">
+                                    <rect key="frame" x="235" y="7" width="34" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Save"/>
+                                    <connections>
+                                        <action selector="saveCanvas:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BW4-CW-66C"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="bn3-5u-QNc">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ShZ-fn-OAu">
+                                    <rect key="frame" x="189" y="7" width="38" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Open"/>
+                                </button>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="canvasView" destination="8bC-Xf-vdC" id="qR9-Nw-rrF"/>
+                        <outlet property="canvasView" destination="Ssh-Mt-NQy" id="AM0-NV-ftC"/>
                         <outlet property="lineWidthSlider" destination="NvD-s8-yCb" id="X7r-gE-37i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="920"/>
+            <point key="canvasLocation" x="1264.8" y="919.79010494752629"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PiB-rw-dMo">
