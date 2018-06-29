@@ -14,6 +14,8 @@
 		680163DE20E5838A006FEBC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680163DC20E5838A006FEBC8 /* LaunchScreen.storyboard */; };
 		680163E920E5838A006FEBC8 /* MichaelChang_Lab3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680163E820E5838A006FEBC8 /* MichaelChang_Lab3Tests.swift */; };
 		680163F420E5838A006FEBC8 /* MichaelChang_Lab3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680163F320E5838A006FEBC8 /* MichaelChang_Lab3UITests.swift */; };
+		6842FEB620E58758002A84D9 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6842FEB520E58758002A84D9 /* CanvasView.swift */; };
+		6842FEBA20E58AAD002A84D9 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6842FEB920E58AAD002A84D9 /* PathView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		680163EF20E5838A006FEBC8 /* MichaelChang-Lab3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MichaelChang-Lab3UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		680163F320E5838A006FEBC8 /* MichaelChang_Lab3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MichaelChang_Lab3UITests.swift; sourceTree = "<group>"; };
 		680163F520E5838A006FEBC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6842FEB520E58758002A84D9 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		6842FEB920E58AAD002A84D9 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				680163D320E58389006FEBC8 /* AppDelegate.swift */,
 				680163D520E58389006FEBC8 /* ViewController.swift */,
+				6842FEB520E58758002A84D9 /* CanvasView.swift */,
+				6842FEB920E58AAD002A84D9 /* PathView.swift */,
 				680163D720E58389006FEBC8 /* Main.storyboard */,
 				680163DA20E5838A006FEBC8 /* Assets.xcassets */,
 				680163DC20E5838A006FEBC8 /* LaunchScreen.storyboard */,
@@ -257,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				680163D620E58389006FEBC8 /* ViewController.swift in Sources */,
+				6842FEBA20E58AAD002A84D9 /* PathView.swift in Sources */,
 				680163D420E58389006FEBC8 /* AppDelegate.swift in Sources */,
+				6842FEB620E58758002A84D9 /* CanvasView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
