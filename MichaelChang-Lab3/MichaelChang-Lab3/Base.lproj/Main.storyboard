@@ -106,14 +106,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hFC-bh-fAT">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="8Rf-N5-Rhk">
+                        <barButtonItem key="leftBarButtonItem" id="8Rf-N5-Rhk">
                             <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="2" maxValue="40" id="NvD-s8-yCb">
                                 <rect key="frame" x="16" y="5" width="83" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" id="0bV-Fi-0I1">
+                            <barButtonItem id="0bV-Fi-0I1">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kHA-Ga-O1M">
                                     <rect key="frame" x="321" y="7" width="38" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -126,7 +126,7 @@
                                     <action selector="undoPath:" destination="BYZ-38-t0r" id="XtW-qt-3ss"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="dJc-6N-2du">
+                            <barButtonItem id="dJc-6N-2du">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9eG-Ka-Egz">
                                     <rect key="frame" x="277" y="7" width="36" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
