@@ -26,11 +26,13 @@ class CanvasView : UIView {
         super.init(coder: aDecoder)
     }
     
+    func pickColor(color: UIColor) {
+        if paths.last != nil {
+            paths.last?.setColor(newColor: color)
+        }
+    }
+    
     func undoPath() {
-//        guard let path = paths.last else {
-//            print("could not get last path")
-//            return
-//        }
         if !paths.isEmpty {
             paths.removeLast()
             print("removed last path")

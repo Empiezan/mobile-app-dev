@@ -5,33 +5,33 @@
 //  Created by labuser on 6/28/18.
 //  Copyright © 2018 wustl. All rights reserved.
 //
+// Credits
+// 1. How to smooth ends of Bezier paths (https://stackoverflow.com/questions/25809347/how-to-smooth-the-joint-of-lines-in-bezier-path)
 
 import Foundation
 import UIKit
 
 class PathView {
     
-    let path = UIBezierPath()
+    private let path = UIBezierPath()
     
-    var points: [CGPoint] = []
+    private var points: [CGPoint] = []
     
-    init (initPoint : CGPoint) {
+    private var color : UIColor
+    
+    init (initPoint: CGPoint, lineWidth: CGFloat, color: UIColor) {
+        self.color = color
         self.points.append(initPoint)
         path.move(to: initPoint)
         print("added initial point: (\(points[0].x), \(points[0].y))")
+        self.path.lineWidth = lineWidth
+        self.path.lineCapStyle = .round
+        self.path.lineJoinStyle = .round
     }
     
-//    func removeLastPoint() -> Bool {
-//        if points.count > 0 {
-//            print("removing last point")
-//            points.removeLast()
-//            return true
-//        }
-//        else {
-//            print("no points left")
-//            return false
-//        }
-//    }
+    func setColor(newColor : UIColor) {
+        color = newColor
+    }
     
     func addPoint(point : CGPoint) {
         points.append(point)
@@ -52,24 +52,7 @@ class PathView {
     }
 
     func draw() {
-        UIColor.black.setStroke()
+        color.setStroke()
         path.stroke()
-    }
-    
-//    private func draw() {
-//        let firstPoint = points[0]
-//        let secondPoint = points[1]
-//        let firstMidpoint = midpoint(first: firstPoint, second: secondPoint)
-//        path.move(to: firstPoint)
-//        path.addLine(to: firstMidpoint)
-//        for index in 1 ..< points.count-1 {
-//            let currentPoint = points[index]
-//            let nextPoint = points[index + 1]
-//            let midPoint = midpoint(first: currentPoint, second: nextPoint)
-//            path.addQuadCurve(to: midPoint, controlPoint: currentPoint)
-//        }
-//        guard let lastLocation = points.last else { return }
-//        path.addLine(to: lastLocation)
-//    }
-    
+    }    
 }

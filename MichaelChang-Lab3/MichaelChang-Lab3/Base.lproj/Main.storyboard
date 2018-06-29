@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,49 +19,132 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="CanvasView" customModule="MichaelChang_Lab3" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Ae6-bf-sRA">
+                                <rect key="frame" x="16" y="577" width="343" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-rG-B3S" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.12734011270000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="JTx-rG-B3S" secondAttribute="height" multiplier="1:1" id="KQe-6x-9RA"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JET-Qo-WAL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqA-o0-emp" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="52" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="eqA-o0-emp" secondAttribute="height" multiplier="1:1" id="y4q-NX-yqN"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NbW-rW-HG4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMI-Gx-L5c" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="104.5" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="eMI-Gx-L5c" secondAttribute="height" multiplier="1:1" id="UZK-QP-s6K"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dym-h0-Far"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r86-F8-kMG" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="156.5" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="r86-F8-kMG" secondAttribute="height" multiplier="1:1" id="tu8-7v-SSg"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9rs-Sr-URT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezR-o4-oia" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="208.5" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ezR-o4-oia" secondAttribute="height" multiplier="1:1" id="KWr-bZ-y6v"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NRj-gV-83S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKr-0L-lbc" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="261" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="TKr-0L-lbc" secondAttribute="height" multiplier="1:1" id="oDC-Dy-HdR"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rWw-LY-bCX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7b-je-kpc" customClass="ColorButton" customModule="MichaelChang_Lab3" customModuleProvider="target">
+                                        <rect key="frame" x="313" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="J7b-je-kpc" secondAttribute="height" multiplier="1:1" id="BYK-m0-y3S"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="colorPicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DPj-4T-NCw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ae6-bf-sRA" secondAttribute="bottom" constant="16" id="43f-Ot-QLX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ae6-bf-sRA" secondAttribute="trailing" constant="16" id="49y-NT-Sbk"/>
+                            <constraint firstItem="Ae6-bf-sRA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T1E-pN-HvM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" id="dGZ-RB-6Tv">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eZS-8d-QXB">
-                                <rect key="frame" x="16" y="7" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="hFC-bh-fAT">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="0bV-Fi-0I1">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kHA-Ga-O1M">
-                                <rect key="frame" x="16" y="7" width="38" height="30"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="8Rf-N5-Rhk">
+                            <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="2" maxValue="40" id="NvD-s8-yCb">
+                                <rect key="frame" x="16" y="5" width="83" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Undo"/>
-                                <connections>
-                                    <action selector="undoPath:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jjx-Ay-Xt4"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="undoPath:" destination="BYZ-38-t0r" id="XtW-qt-3ss"/>
-                            </connections>
+                            </slider>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="dJc-6N-2du">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9eG-Ka-Egz">
-                                <rect key="frame" x="323" y="7" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Clear"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="0bV-Fi-0I1">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kHA-Ga-O1M">
+                                    <rect key="frame" x="321" y="7" width="38" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Undo"/>
+                                    <connections>
+                                        <action selector="undoPath:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jjx-Ay-Xt4"/>
+                                    </connections>
+                                </button>
                                 <connections>
-                                    <action selector="clearCanvas:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4id-De-7tV"/>
+                                    <action selector="undoPath:" destination="BYZ-38-t0r" id="XtW-qt-3ss"/>
                                 </connections>
-                            </button>
-                            <connections>
-                                <action selector="clearCanvas:" destination="BYZ-38-t0r" id="Dhu-vr-Q40"/>
-                            </connections>
-                        </barButtonItem>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="dJc-6N-2du">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9eG-Ka-Egz">
+                                    <rect key="frame" x="277" y="7" width="36" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Clear"/>
+                                    <connections>
+                                        <action selector="clearCanvas:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4id-De-7tV"/>
+                                    </connections>
+                                </button>
+                                <connections>
+                                    <action selector="clearCanvas:" destination="BYZ-38-t0r" id="Dhu-vr-Q40"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="canvasView" destination="8bC-Xf-vdC" id="qR9-Nw-rrF"/>
+                        <outlet property="lineWidthSlider" destination="NvD-s8-yCb" id="X7r-gE-37i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -11,8 +11,16 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var canvasView: CanvasView!
+    @IBOutlet weak var lineWidthSlider: UISlider!    
     
     var currPath : PathView?
+    var currentColor = UIColor.black
+    
+    @IBAction func colorPicked(_ sender: Any) {
+        if let color = (sender as! UIButton).backgroundColor {
+            currentColor = color
+        }
+    }
     
     @IBAction func undoPath(_ sender: Any) {
         canvasView.undoPath()
@@ -24,7 +32,7 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touchPoint = touches.first?.location(in: canvasView) {
-            currPath = PathView(initPoint: touchPoint)
+            currPath = PathView(initPoint: touchPoint, lineWidth: CGFloat(lineWidthSlider.value), color: currentColor)
             canvasView.paths.append(currPath!)
         }
     }

@@ -16,6 +16,7 @@
 		680163F420E5838A006FEBC8 /* MichaelChang_Lab3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680163F320E5838A006FEBC8 /* MichaelChang_Lab3UITests.swift */; };
 		6842FEB620E58758002A84D9 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6842FEB520E58758002A84D9 /* CanvasView.swift */; };
 		6842FEBA20E58AAD002A84D9 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6842FEB920E58AAD002A84D9 /* PathView.swift */; };
+		68FA1C5C20E5C45B00FCE606 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FA1C5B20E5C45B00FCE606 /* ColorButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		680163F520E5838A006FEBC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6842FEB520E58758002A84D9 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		6842FEB920E58AAD002A84D9 /* PathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
+		68FA1C5B20E5C45B00FCE606 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				680163D520E58389006FEBC8 /* ViewController.swift */,
 				6842FEB520E58758002A84D9 /* CanvasView.swift */,
 				6842FEB920E58AAD002A84D9 /* PathView.swift */,
+				68FA1C5B20E5C45B00FCE606 /* ColorButton.swift */,
 				680163D720E58389006FEBC8 /* Main.storyboard */,
 				680163DA20E5838A006FEBC8 /* Assets.xcassets */,
 				680163DC20E5838A006FEBC8 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				680163D620E58389006FEBC8 /* ViewController.swift in Sources */,
 				6842FEBA20E58AAD002A84D9 /* PathView.swift in Sources */,
+				68FA1C5C20E5C45B00FCE606 /* ColorButton.swift in Sources */,
 				680163D420E58389006FEBC8 /* AppDelegate.swift in Sources */,
 				6842FEB620E58758002A84D9 /* CanvasView.swift in Sources */,
 			);
