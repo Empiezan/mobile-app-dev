@@ -8,16 +8,67 @@
 // Credits
 // 1. How to take a screenshot of a UIView (https://stackoverflow.com/questions/31582222/swift-take-sceenshot-of-a-uiview)
 // 2. How to save a UI Image to Photos library (https://www.hackingwithswift.com/example-code/media/uiimagewritetosavedphotosalbum-how-to-write-to-the-ios-photo-album)
+// 3. How to get image from Photos library (https://www.youtube.com/watch?v=uBmqZwA1mxw)
+// 4. How to resize an image (https://stackoverflow.com/questions/31314412/how-to-resize-image-in-swift)
+// 5. How to display image in UI View (https://stackoverflow.com/questions/27049937/how-to-set-a-background-image-in-xcode-using-swift)
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var canvasView: CanvasView!
     @IBOutlet weak var lineWidthSlider: UISlider!
     
     var currPath : PathView?
     var currentColor = UIColor.black
+    
+    @IBAction func openPhotoCanvas(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: false, completion: nil)
+        }
+    }
+    
+    func resizeImage(image: UIImage) -> UIImage {
+        let size = image.size
+        let heightRatio  = canvasView.frame.height  / size.height
+        let newSize = CGSize(width: size.width * heightRatio,  height: size.height * heightRatio)
+        
+        let diff = (newSize.width - canvasView.frame.width) / 2
+        var rect : CGRect
+        if diff > 0 {
+            rect = CGRect(x: -diff, y: 0, width: newSize.width, height: canvasView.frame.height)
+        }
+        else if diff < 0 {
+            rect = CGRect(x: diff, y: 0, width: newSize.width, height: canvasView.frame.height)
+        }
+        else {
+            rect = CGRect(x: 0, y: 0, width: canvasView.frame.width, height: canvasView.frame.height)
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(canvasView.frame.size, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            canvasView.clearCanvas()
+            canvasView.backgroundColor = UIColor(patternImage: resizeImage(image: image))
+            print("Setting Canvas Image")
+        }
+        else {
+            print("Error Setting Canvas Image")
+        }
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     
     @IBAction func saveCanvas(_ sender: Any) {
         let screenShot = takeScreenshot()

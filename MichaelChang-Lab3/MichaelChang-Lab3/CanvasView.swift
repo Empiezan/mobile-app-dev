@@ -44,6 +44,7 @@ class CanvasView : UIView {
     }
     
     func clearCanvas() {
+        backgroundColor = UIColor.white
         paths.removeAll()
         print("cleared canvas")
     }

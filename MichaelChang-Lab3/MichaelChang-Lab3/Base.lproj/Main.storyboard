@@ -148,7 +148,7 @@
                                     <action selector="clearCanvas:" destination="BYZ-38-t0r" id="Dhu-vr-Q40"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="PDa-7o-45Q">
+                            <barButtonItem id="PDa-7o-45Q">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IJz-CR-zgc">
                                     <rect key="frame" x="235" y="7" width="34" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -158,11 +158,14 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="bn3-5u-QNc">
+                            <barButtonItem id="bn3-5u-QNc">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ShZ-fn-OAu">
                                     <rect key="frame" x="189" y="7" width="38" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Open"/>
+                                    <connections>
+                                        <action selector="openPhotoCanvas:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IeP-x0-IYy"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
