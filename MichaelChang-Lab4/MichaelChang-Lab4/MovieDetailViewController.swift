@@ -11,8 +11,13 @@ import UIKit
 class MovieDetailViewController: UIViewController {
 
     var movieId : Int!
+    var movieTitle : String!
+    var posterPath : String!
+    var releaseDate : String!
+    var score : Int!
     
-    @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    @IBOutlet weak var movieTitleLabel: UINavigationItem!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -22,25 +27,45 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if movieId != nil {
-            getMovieData()
-        }
-    }
-    
-    func getMovieData() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/release_dates?api_key=29689c3db85cc939c7b90bed28d5cb85")
-        let data = try! Data(contentsOf: url!)
-        let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-        for locale in json.results {
-            if let rating = locale.certification {
-                ratingLabel.text = "Rating: \(rating)"
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setMovieDetails()
+    }
+    
+    func setMovieDetails() {
+        movieTitleLabel.title = movieTitle!
+        let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath!)")
+        //TODO: try and catch safely
+        let data = try! Data(contentsOf: url!)
+        posterImageView.image = UIImage(data: data)
+        releaseLabel.text = "Release Date: \(releaseDate!)"
+        scoreLabel.text = "Score: \(score!)/100"
+        getCertification()
+    }
+    
+    func getCertification() {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId!)/release_dates?api_key=29689c3db85cc939c7b90bed28d5cb85")
+        let data = try! Data(contentsOf: url!)
+        let json = try! JSONDecoder().decode(TMDbDetailsResult.self, from: data)
+        
+        for locale in json.results {
+            if "US" == locale.iso_3166_1 {
+                ratingLabel.text = "Rating: \(locale.release_dates[0].certification!)"
+            }
+        }
+    }
+    
+    @IBAction func addFavoriteMovie(_ sender: Any) {
+        print(movieTitle)
+        let path = Bundle.main.path(forResource: "Favorites", ofType: "plist")
+        print(path!)
+        movieTitle!.write(path!)
     }
     
 

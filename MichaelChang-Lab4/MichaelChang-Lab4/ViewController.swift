@@ -22,15 +22,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        spinner = UIActivityIndicatorView(frame: CGRect(origin: view.center, size: CGSize(width: 50, height: 50)))
-        spinner.hidesWhenStopped = true
-        view.addSubview(spinner)
+        setSpinner()
         getMovies()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setSpinner() {
+        spinner = UIActivityIndicatorView(frame: CGRect(origin: view.center, size: CGSize(width: 50, height: 50)))
+        spinner.hidesWhenStopped = true
+        view.addSubview(spinner)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -47,7 +51,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         movies.removeAll()
         for movie in json.results {
             if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count, certification: "") )
+                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
             }
         }
         movieCollection.reloadData()
@@ -62,7 +66,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         movies.removeAll()
         for movie in json.results {
             if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count, certification: "") )
+                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
             }
         }
         movieCollection.reloadData()
@@ -76,6 +80,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let data = try! Data(contentsOf: url!)
         movie.movieImageView.image = UIImage(data: data)
         movie.movieTitleLabel.text = movies[indexPath.row].title
+        movie.data = movies[indexPath.row]
         return movie
     }
     
@@ -90,6 +95,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return
         }
         movieDetailsVC?.movieId = movie.data.id
+        movieDetailsVC?.movieTitle = movie.data.title
+        movieDetailsVC?.posterPath = movie.data.poster_path
+        movieDetailsVC?.score = Int(movie.data.vote_average * 10)
+        movieDetailsVC?.releaseDate = movie.data.release_date
     }
     
 }

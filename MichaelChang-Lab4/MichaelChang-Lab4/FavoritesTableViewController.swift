@@ -8,18 +8,25 @@
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController {
-
+class FavoritesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var pListPath : String!
     var favorites : [String] = []
+    
+    @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getFavorites()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        favoritesTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +35,18 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     func getFavorites() {
-        let path = Bundle.main.path(forResource: "Favorites", ofType: "plist")
-        favorites = NSDictionary(contentsOfFile: path!)!.object(forKey: "Root") as! Array<String>
+        pListPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")
+        favorites = NSArray(contentsOfFile: pListPath!)! as! Array<String>
+        favoritesTableView.reloadData()
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return favorites.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteMovie", for: indexPath)
         cell.textLabel?.text = favorites[indexPath.row]
         // Configure the cell...
