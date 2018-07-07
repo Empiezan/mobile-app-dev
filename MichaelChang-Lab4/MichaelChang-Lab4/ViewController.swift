@@ -13,7 +13,6 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
-
     
     var movies : [MovieData] = []
     var spinner : UIActivityIndicatorView!
@@ -27,7 +26,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
         getMovies()
-        spinner.stopAnimating()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,15 +34,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            getMovies()
+            return
+        }
         spinner.startAnimating()
-        view.addSubview(spinner)
-        let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(searchText)")
+        print(searchText)
+        let query = searchText.replacingOccurrences(of: " ", with: "+")
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
         let data = try! Data(contentsOf: url!)
         let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-        
+        movies.removeAll()
         for movie in json.results {
             if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count, certification: "") )
             }
         }
         movieCollection.reloadData()
@@ -53,21 +56,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     func getMovies() {
         spinner.startAnimating()
-        view.addSubview(spinner)
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=29689c3db85cc939c7b90bed28d5cb85")
         let data = try! Data(contentsOf: url!)
         let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-        
+        movies.removeAll()
         for movie in json.results {
             if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count, certification: "") )
             }
         }
         movieCollection.reloadData()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        spinner.stopAnimating()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,5 +78,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         movie.movieTitleLabel.text = movies[indexPath.row].title
         return movie
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let movieDetailsVC = segue.destination as? MovieDetailViewController
+        guard let movie = sender as? Movie else {
+            print("error")
+            return
+        }
+        movieDetailsVC?.movieId = movie.data.id
+    }
+    
 }
 

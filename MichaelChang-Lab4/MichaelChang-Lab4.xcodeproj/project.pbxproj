@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2217D7CC20F0792700639B82 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217D7CB20F0792700639B82 /* MovieDetailViewController.swift */; };
+		2238BC0A20F123BD0087A346 /* Favorites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2238BC0920F123BD0087A346 /* Favorites.plist */; };
+		2238BC0C20F124520087A346 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238BC0B20F124520087A346 /* FavoritesTableViewController.swift */; };
 		22F1A49F20EEE6880094A456 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A49E20EEE6880094A456 /* AppDelegate.swift */; };
 		22F1A4A120EEE6880094A456 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4A020EEE6880094A456 /* ViewController.swift */; };
 		22F1A4A420EEE6880094A456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F1A4A220EEE6880094A456 /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2217D7CB20F0792700639B82 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		2238BC0920F123BD0087A346 /* Favorites.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Favorites.plist; sourceTree = "<group>"; };
+		2238BC0B20F124520087A346 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		22F1A49B20EEE6880094A456 /* MichaelChang-Lab4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MichaelChang-Lab4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F1A49E20EEE6880094A456 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22F1A4A020EEE6880094A456 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,14 +113,17 @@
 			children = (
 				22F1A49E20EEE6880094A456 /* AppDelegate.swift */,
 				22F1A4A020EEE6880094A456 /* ViewController.swift */,
+				2217D7CB20F0792700639B82 /* MovieDetailViewController.swift */,
 				22F1A4CC20EEEC4B0094A456 /* Movie.swift */,
 				22F1A4D220EF0C270094A456 /* MovieCollectionView.swift */,
 				22F1A4D020EEFAFA0094A456 /* MovieData.swift */,
 				22F1A4CE20EEF9650094A456 /* TMDbSearchResult.swift */,
+				2238BC0B20F124520087A346 /* FavoritesTableViewController.swift */,
 				22F1A4A220EEE6880094A456 /* Main.storyboard */,
 				22F1A4A520EEE6910094A456 /* Assets.xcassets */,
 				22F1A4A720EEE6910094A456 /* LaunchScreen.storyboard */,
 				22F1A4AA20EEE6910094A456 /* Info.plist */,
+				2238BC0920F123BD0087A346 /* Favorites.plist */,
 			);
 			path = "MichaelChang-Lab4";
 			sourceTree = "<group>";
@@ -241,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2238BC0A20F123BD0087A346 /* Favorites.plist in Resources */,
 				22F1A4A920EEE6910094A456 /* LaunchScreen.storyboard in Resources */,
 				22F1A4A620EEE6910094A456 /* Assets.xcassets in Resources */,
 				22F1A4A420EEE6880094A456 /* Main.storyboard in Resources */,
@@ -271,7 +281,9 @@
 				22F1A4A120EEE6880094A456 /* ViewController.swift in Sources */,
 				22F1A4CF20EEF9650094A456 /* TMDbSearchResult.swift in Sources */,
 				22F1A49F20EEE6880094A456 /* AppDelegate.swift in Sources */,
+				2238BC0C20F124520087A346 /* FavoritesTableViewController.swift in Sources */,
 				22F1A4D120EEFAFA0094A456 /* MovieData.swift in Sources */,
+				2217D7CC20F0792700639B82 /* MovieDetailViewController.swift in Sources */,
 				22F1A4CD20EEEC4B0094A456 /* Movie.swift in Sources */,
 				22F1A4D320EF0C270094A456 /* MovieCollectionView.swift in Sources */,
 			);
