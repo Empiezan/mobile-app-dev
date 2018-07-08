@@ -15,6 +15,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     var movies : [MovieData] = []
+    var popularMovies : [MovieData] = []
     var spinner : UIActivityIndicatorView!
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollection: UICollectionView!
@@ -32,17 +33,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func setSpinner() {
-        spinner = UIActivityIndicatorView(frame: CGRect(origin: view.center, size: CGSize(width: 50, height: 50)))
+        spinner = UIActivityIndicatorView(frame: CGRect(origin: view.center, size: CGSize(width: 200, height: 200)))
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        spinner.startAnimating()
         if searchText.isEmpty {
-            getMovies()
+            movies = popularMovies
+            movieCollection.reloadData()
+            spinner.stopAnimating()
             return
         }
-        spinner.startAnimating()
+        
         print(searchText)
         let query = searchText.replacingOccurrences(of: " ", with: "+")
         let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
@@ -63,12 +67,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=29689c3db85cc939c7b90bed28d5cb85")
         let data = try! Data(contentsOf: url!)
         let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-        movies.removeAll()
+//        movies.removeAll()
         for movie in json.results {
             if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                popularMovies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
             }
         }
+        movies = popularMovies
         movieCollection.reloadData()
         spinner.stopAnimating()
     }

@@ -30,6 +30,7 @@
 		687F949420F1675D00CE0AAB /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949320F1675D00CE0AAB /* MovieDetails.swift */; };
 		687F949620F1684000CE0AAB /* TMDbDetailsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949520F1684000CE0AAB /* TMDbDetailsResult.swift */; };
 		687F949820F16C4D00CE0AAB /* ReleaseDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949720F16C4D00CE0AAB /* ReleaseDetails.swift */; };
+		689CB74820F28C0600D84241 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 689CB74720F28C0600D84241 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		687F949320F1675D00CE0AAB /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		687F949520F1684000CE0AAB /* TMDbDetailsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbDetailsResult.swift; sourceTree = "<group>"; };
 		687F949720F16C4D00CE0AAB /* ReleaseDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDetails.swift; sourceTree = "<group>"; };
+		689CB74720F28C0600D84241 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				22F1A4A720EEE6910094A456 /* LaunchScreen.storyboard */,
 				22F1A4AA20EEE6910094A456 /* Info.plist */,
 				2238BC0920F123BD0087A346 /* Favorites.plist */,
+				689CB74720F28C0600D84241 /* GoogleService-Info.plist */,
 				685E1ADC20F1824800B4D3A1 /* favorites.db */,
 			);
 			path = "MichaelChang-Lab4";
@@ -294,6 +297,7 @@
 			files = (
 				2238BC0A20F123BD0087A346 /* Favorites.plist in Resources */,
 				22F1A4A920EEE6910094A456 /* LaunchScreen.storyboard in Resources */,
+				689CB74820F28C0600D84241 /* GoogleService-Info.plist in Resources */,
 				685E1ADD20F1824800B4D3A1 /* favorites.db in Resources */,
 				22F1A4A620EEE6910094A456 /* Assets.xcassets in Resources */,
 				22F1A4A420EEE6880094A456 /* Main.storyboard in Resources */,
