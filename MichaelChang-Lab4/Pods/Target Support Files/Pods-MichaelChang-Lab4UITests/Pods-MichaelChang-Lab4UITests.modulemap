@@ -1,0 +1,6 @@
+framework module Pods_MichaelChang_Lab4UITests {
+  umbrella header "Pods-MichaelChang-Lab4UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
