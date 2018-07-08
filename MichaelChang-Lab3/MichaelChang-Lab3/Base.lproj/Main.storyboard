@@ -160,7 +160,7 @@
                             </barButtonItem>
                             <barButtonItem id="bn3-5u-QNc">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ShZ-fn-OAu">
-                                    <rect key="frame" x="189" y="7" width="38" height="30"/>
+                                    <rect key="frame" x="107" y="7" width="38" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Open"/>
                                     <connections>
