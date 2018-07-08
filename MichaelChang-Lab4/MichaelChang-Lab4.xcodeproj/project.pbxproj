@@ -21,6 +21,12 @@
 		22F1A4CF20EEF9650094A456 /* TMDbSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4CE20EEF9650094A456 /* TMDbSearchResult.swift */; };
 		22F1A4D120EEFAFA0094A456 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4D020EEFAFA0094A456 /* MovieData.swift */; };
 		22F1A4D320EF0C270094A456 /* MovieCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4D220EF0C270094A456 /* MovieCollectionView.swift */; };
+		685E1ADD20F1824800B4D3A1 /* favorites.db in Resources */ = {isa = PBXBuildFile; fileRef = 685E1ADC20F1824800B4D3A1 /* favorites.db */; };
+		685E1AEA20F182CA00B4D3A1 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1ADF20F182C900B4D3A1 /* FMResultSet.m */; };
+		685E1AEB20F182CA00B4D3A1 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE420F182C900B4D3A1 /* FMDatabase.m */; };
+		685E1AEC20F182CA00B4D3A1 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE520F182C900B4D3A1 /* FMDatabasePool.m */; };
+		685E1AED20F182CA00B4D3A1 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE720F182CA00B4D3A1 /* FMDatabaseAdditions.m */; };
+		685E1AEE20F182CA00B4D3A1 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE820F182CA00B4D3A1 /* FMDatabaseQueue.m */; };
 		687F949420F1675D00CE0AAB /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949320F1675D00CE0AAB /* MovieDetails.swift */; };
 		687F949620F1684000CE0AAB /* TMDbDetailsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949520F1684000CE0AAB /* TMDbDetailsResult.swift */; };
 		687F949820F16C4D00CE0AAB /* ReleaseDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687F949720F16C4D00CE0AAB /* ReleaseDetails.swift */; };
@@ -64,6 +70,19 @@
 		22F1A4CE20EEF9650094A456 /* TMDbSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbSearchResult.swift; sourceTree = "<group>"; };
 		22F1A4D020EEFAFA0094A456 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		22F1A4D220EF0C270094A456 /* MovieCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionView.swift; sourceTree = "<group>"; };
+		685E1ADC20F1824800B4D3A1 /* favorites.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = favorites.db; path = ../../favorites.db; sourceTree = "<group>"; };
+		685E1ADE20F182C800B4D3A1 /* MichaelChang-Lab4-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MichaelChang-Lab4-Bridging-Header.h"; sourceTree = "<group>"; };
+		685E1ADF20F182C900B4D3A1 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		685E1AE020F182C900B4D3A1 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		685E1AE120F182C900B4D3A1 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		685E1AE220F182C900B4D3A1 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		685E1AE320F182C900B4D3A1 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		685E1AE420F182C900B4D3A1 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		685E1AE520F182C900B4D3A1 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		685E1AE620F182C900B4D3A1 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		685E1AE720F182CA00B4D3A1 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		685E1AE820F182CA00B4D3A1 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		685E1AE920F182CA00B4D3A1 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		687F949320F1675D00CE0AAB /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		687F949520F1684000CE0AAB /* TMDbDetailsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbDetailsResult.swift; sourceTree = "<group>"; };
 		687F949720F16C4D00CE0AAB /* ReleaseDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDetails.swift; sourceTree = "<group>"; };
@@ -101,6 +120,18 @@
 				22F1A4B220EEE6910094A456 /* MichaelChang-Lab4Tests */,
 				22F1A4BD20EEE6910094A456 /* MichaelChang-Lab4UITests */,
 				22F1A49C20EEE6880094A456 /* Products */,
+				685E1AE620F182C900B4D3A1 /* FMDatabase.h */,
+				685E1AE420F182C900B4D3A1 /* FMDatabase.m */,
+				685E1AE220F182C900B4D3A1 /* FMDatabaseAdditions.h */,
+				685E1AE720F182CA00B4D3A1 /* FMDatabaseAdditions.m */,
+				685E1AE120F182C900B4D3A1 /* FMDatabasePool.h */,
+				685E1AE520F182C900B4D3A1 /* FMDatabasePool.m */,
+				685E1AE020F182C900B4D3A1 /* FMDatabaseQueue.h */,
+				685E1AE820F182CA00B4D3A1 /* FMDatabaseQueue.m */,
+				685E1AE320F182C900B4D3A1 /* FMDB.h */,
+				685E1AE920F182CA00B4D3A1 /* FMResultSet.h */,
+				685E1ADF20F182C900B4D3A1 /* FMResultSet.m */,
+				685E1ADE20F182C800B4D3A1 /* MichaelChang-Lab4-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +164,7 @@
 				22F1A4A720EEE6910094A456 /* LaunchScreen.storyboard */,
 				22F1A4AA20EEE6910094A456 /* Info.plist */,
 				2238BC0920F123BD0087A346 /* Favorites.plist */,
+				685E1ADC20F1824800B4D3A1 /* favorites.db */,
 			);
 			path = "MichaelChang-Lab4";
 			sourceTree = "<group>";
@@ -223,6 +255,7 @@
 				TargetAttributes = {
 					22F1A49A20EEE6880094A456 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					22F1A4AE20EEE6910094A456 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -261,6 +294,7 @@
 			files = (
 				2238BC0A20F123BD0087A346 /* Favorites.plist in Resources */,
 				22F1A4A920EEE6910094A456 /* LaunchScreen.storyboard in Resources */,
+				685E1ADD20F1824800B4D3A1 /* favorites.db in Resources */,
 				22F1A4A620EEE6910094A456 /* Assets.xcassets in Resources */,
 				22F1A4A420EEE6880094A456 /* Main.storyboard in Resources */,
 			);
@@ -289,15 +323,20 @@
 			files = (
 				22F1A4A120EEE6880094A456 /* ViewController.swift in Sources */,
 				22F1A4CF20EEF9650094A456 /* TMDbSearchResult.swift in Sources */,
+				685E1AEB20F182CA00B4D3A1 /* FMDatabase.m in Sources */,
 				22F1A49F20EEE6880094A456 /* AppDelegate.swift in Sources */,
 				687F949820F16C4D00CE0AAB /* ReleaseDetails.swift in Sources */,
 				2238BC0C20F124520087A346 /* FavoritesTableViewController.swift in Sources */,
 				22F1A4D120EEFAFA0094A456 /* MovieData.swift in Sources */,
+				685E1AEA20F182CA00B4D3A1 /* FMResultSet.m in Sources */,
 				2217D7CC20F0792700639B82 /* MovieDetailViewController.swift in Sources */,
+				685E1AEE20F182CA00B4D3A1 /* FMDatabaseQueue.m in Sources */,
 				687F949620F1684000CE0AAB /* TMDbDetailsResult.swift in Sources */,
 				22F1A4CD20EEEC4B0094A456 /* Movie.swift in Sources */,
+				685E1AEC20F182CA00B4D3A1 /* FMDatabasePool.m in Sources */,
 				22F1A4D320EF0C270094A456 /* MovieCollectionView.swift in Sources */,
 				687F949420F1675D00CE0AAB /* MovieDetails.swift in Sources */,
+				685E1AED20F182CA00B4D3A1 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W5M5K2W3PT;
 				INFOPLIST_FILE = "MichaelChang-Lab4/Info.plist";
@@ -479,6 +519,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mc.MichaelChang-Lab4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MichaelChang-Lab4-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -488,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W5M5K2W3PT;
 				INFOPLIST_FILE = "MichaelChang-Lab4/Info.plist";
@@ -497,6 +540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mc.MichaelChang-Lab4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MichaelChang-Lab4-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

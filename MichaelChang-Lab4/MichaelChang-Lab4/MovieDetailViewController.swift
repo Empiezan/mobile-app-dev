@@ -62,10 +62,26 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction func addFavoriteMovie(_ sender: Any) {
-        print(movieTitle)
-        let path = Bundle.main.path(forResource: "Favorites", ofType: "plist")
-        print(path!)
-        movieTitle!.write(path!)
+//        print(movieTitle)
+//        let path = Bundle.main.path(forResource: "Favorites", ofType: "plist")
+//        print(path!)
+//        movieTitle!.write(path!)
+        
+        let path = Bundle.main.path(forResource: "favorites", ofType: "db")
+        let contactDB = FMDatabase(path: path)
+        
+        if !(contactDB.open()) {
+            print("Unable to open database")
+            return
+        }
+        else {
+            do {
+                try contactDB.executeUpdate("insert into favorites (movieTitle) values (?) ", values: [movieTitle])
+            } catch let error as NSError {
+                print("failed \(error)")
+            }
+        }
+        
     }
     
 

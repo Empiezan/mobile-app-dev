@@ -26,6 +26,7 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getFavorites()
         favoritesTableView.reloadData()
     }
 
@@ -35,8 +36,28 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func getFavorites() {
-        pListPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")
-        favorites = NSArray(contentsOfFile: pListPath!)! as! Array<String>
+//        pListPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")
+//        favorites = NSArray(contentsOfFile: pListPath!)! as! Array<String>
+        favorites.removeAll()
+        let path = Bundle.main.path(forResource: "favorites", ofType: "db")
+        let contactDB = FMDatabase(path: path)
+        
+        if !(contactDB.open()) {
+            print("Unable to open database")
+            return
+        }
+        else {
+            do {
+                let results = try contactDB.executeQuery("select * from favorites", values: nil)
+                while(results.next()) {
+                    let title = results.string(forColumn: "movieTitle")
+                    favorites.append(title!)
+                }
+            } catch let error as NSError {
+                print("failed \(error)")
+            }
+        }
+        
         favoritesTableView.reloadData()
     }
 
@@ -54,6 +75,27 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
  
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let removedMovie = favorites[indexPath.row]
+            let path = Bundle.main.path(forResource: "favorites", ofType: "db")
+            let contactDB = FMDatabase(path: path)
+            
+            if !(contactDB.open()) {
+                print("Unable to open database")
+                return
+            }
+            else {
+                do {
+                    try contactDB.executeUpdate("DELETE FROM favorites WHERE movieTitle=?", values: [removedMovie])
+                } catch let error as NSError {
+                    print("failed \(error)")
+                }
+            }
+            favorites.remove(at: indexPath.row)
+            favoritesTableView.reloadData()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
