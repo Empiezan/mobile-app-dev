@@ -9,6 +9,8 @@
 // 1. https://openclipart.org/detail/144715/movie-clapper-board
 // 2. https://openclipart.org/detail/93367/favorite-icon
 // 3. https://www.youtube.com/watch?v=Ys8cDERQPuU
+// 4. How to show alerts (https://learnappmaking.com/uialertcontroller-alerts-swift-how-to/)
+// 5. How to refresh collection view with pull down gesture (https://stackoverflow.com/questions/35362440/pull-to-refresh-in-uicollectionview-in-viewcontroller)
 
 import UIKit
 
@@ -17,6 +19,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var movies : [MovieData] = []
     var popularMovies : [MovieData] = []
     var spinner : UIActivityIndicatorView!
+    var refresher:UIRefreshControl!
+    
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollection: UICollectionView!
     
@@ -24,7 +28,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setSpinner()
-        getMovies()
+        getPopularMovies()
+        setUpRefresher()
+    }
+    
+    func setUpRefresher() {
+        refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(getMoviesByQuery), for: .valueChanged)
+        movieCollection.addSubview(refresher)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,18 +43,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func showAttribution(_ sender: Any) {
+        let att = UIAlertController(title: "Credits", message: "This product uses the TMDb API but is not endorsed or certified by TMDb.", preferredStyle: .alert)
+        att.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(att, animated: true)
+    }
+    
     func setSpinner() {
-        spinner = UIActivityIndicatorView(frame: CGRect(origin: view.center, size: CGSize(width: 200, height: 200)))
+        spinner = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 50, height: 50))
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         spinner.startAnimating()
+        getMoviesByQuery()
+    }
+    
+    @objc func getMoviesByQuery() {
+        let searchText = movieSearchBar.text!
         if searchText.isEmpty {
             movies = popularMovies
             movieCollection.reloadData()
             spinner.stopAnimating()
+            refresher.endRefreshing()
             return
         }
         
@@ -63,15 +86,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 DispatchQueue.main.async {
                     self.movieCollection.reloadData()
                     self.spinner.stopAnimating()
+                    self.refresher.endRefreshing()
                 }
             } catch {
-//                Display some message about not having internet access
-                
+                //                Display some message about not having internet access
+                let noInternet = UIAlertController(title: "Error Connecting", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(noInternet, animated: true)
             }
         }
+        
     }
 
-    func getMovies() {
+    func getPopularMovies() {
         spinner.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             do {

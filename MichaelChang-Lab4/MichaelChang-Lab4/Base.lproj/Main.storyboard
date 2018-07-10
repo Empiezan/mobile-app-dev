@@ -145,7 +145,18 @@
                         <viewLayoutGuide key="safeArea" id="eXw-o1-9tg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="Movie" id="slb-Re-4IN"/>
-                    <navigationItem key="navigationItem" title="Movies from TMDB" id="tiZ-ds-8Cw"/>
+                    <navigationItem key="navigationItem" title="Movies from TMDB" id="tiZ-ds-8Cw">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZKn-xp-ab7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wGQ-DX-XaV">
+                                <rect key="frame" x="309" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Credits"/>
+                                <connections>
+                                    <action selector="showAttribution:" destination="RTb-8f-Fqk" eventType="touchUpInside" id="onJ-LX-2JA"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="movieCollection" destination="Fs3-sF-qsW" id="ya7-V8-rrw"/>
                         <outlet property="movieSearchBar" destination="AaM-Fm-tkT" id="VFV-4u-Tft"/>
