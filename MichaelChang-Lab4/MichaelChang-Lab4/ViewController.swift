@@ -47,35 +47,53 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return
         }
         
-        print(searchText)
-        let query = searchText.replacingOccurrences(of: " ", with: "+")
-        let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
-        let data = try! Data(contentsOf: url!)
-        let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-        movies.removeAll()
-        for movie in json.results {
-            if let posterPath = movie.poster_path {
-                movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                print(searchText)
+                let query = searchText.replacingOccurrences(of: " ", with: "+")
+                let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
+                let data = try Data(contentsOf: url!)
+                let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
+                self.movies.removeAll()
+                for movie in json.results {
+                    if let posterPath = movie.poster_path {
+                        self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.movieCollection.reloadData()
+                    self.spinner.stopAnimating()
+                }
+            } catch {
+//                Display some message about not having internet access
+                
             }
         }
-        movieCollection.reloadData()
-        spinner.stopAnimating()
     }
 
     func getMovies() {
         spinner.startAnimating()
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=29689c3db85cc939c7b90bed28d5cb85")
-        let data = try! Data(contentsOf: url!)
-        let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
-//        movies.removeAll()
-        for movie in json.results {
-            if let posterPath = movie.poster_path {
-                popularMovies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=29689c3db85cc939c7b90bed28d5cb85")
+                let data = try Data(contentsOf: url!)
+                let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
+                //        movies.removeAll()
+                for movie in json.results {
+                    if let posterPath = movie.poster_path {
+                        self.popularMovies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.movies = self.popularMovies
+                    self.movieCollection.reloadData()
+                    self.spinner.stopAnimating()
+                }
+            } catch {
+//                Display some message about not having internet access
+                
             }
         }
-        movies = popularMovies
-        movieCollection.reloadData()
-        spinner.stopAnimating()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

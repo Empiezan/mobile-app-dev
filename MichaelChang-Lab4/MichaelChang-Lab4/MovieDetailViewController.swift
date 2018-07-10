@@ -40,25 +40,40 @@ class MovieDetailViewController: UIViewController {
     
     func setMovieDetails() {
         movieTitleLabel.title = movieTitle!
-        let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath!)")
-        //TODO: try and catch safely
-        let data = try! Data(contentsOf: url!)
-        posterImageView.image = UIImage(data: data)
         releaseLabel.text = "Release Date: \(releaseDate!)"
         scoreLabel.text = "Score: \(score!)/100"
-        getCertification()
+        
+        DispatchQueue.global().async {
+            do {
+                let url = URL(string: "https://image.tmdb.org/t/p/w185\(self.posterPath!)")
+                //TODO: try and catch safely
+                let data = try Data(contentsOf: url!)
+                let cert = self.getCertification()
+                DispatchQueue.main.async {
+                    if cert != nil {
+                        self.posterImageView.image = UIImage(data: data)
+                        self.ratingLabel.text = "Rating: \(cert!)"
+                    }
+//                    Should probably catch error more safely...
+                    
+                }
+            } catch {
+//                print error about internet connection
+            }
+        }
     }
     
-    func getCertification() {
+    func getCertification() -> String? {
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId!)/release_dates?api_key=29689c3db85cc939c7b90bed28d5cb85")
         let data = try! Data(contentsOf: url!)
         let json = try! JSONDecoder().decode(TMDbDetailsResult.self, from: data)
         
         for locale in json.results {
             if "US" == locale.iso_3166_1 {
-                ratingLabel.text = "Rating: \(locale.release_dates[0].certification!)"
+                return locale.release_dates[0].certification!
             }
         }
+        return nil
     }
     
     @IBAction func addFavoriteMovie(_ sender: Any) {
