@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Movie: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -18,5 +18,4 @@ class Movie: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
 }

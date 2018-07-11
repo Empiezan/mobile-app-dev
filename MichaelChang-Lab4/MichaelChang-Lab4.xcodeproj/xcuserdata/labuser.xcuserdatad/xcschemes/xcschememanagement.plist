@@ -7,7 +7,25 @@
 		<key>MichaelChang-Lab4.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>22F1A49A20EEE6880094A456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>22F1A4AE20EEE6910094A456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>22F1A4B920EEE6910094A456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

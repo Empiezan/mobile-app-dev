@@ -16,10 +16,12 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
+    var totalNumPages = 1
     var movies : [MovieData] = []
     var popularMovies : [MovieData] = []
     var spinner : UIActivityIndicatorView!
     var refresher:UIRefreshControl!
+    var imageCache = [UIImage]()
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollection: UICollectionView!
@@ -35,6 +37,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func setUpRefresher() {
         refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(getMoviesByQuery), for: .valueChanged)
+        movieCollection.alwaysBounceVertical = true
         movieCollection.addSubview(refresher)
     }
 
@@ -60,9 +63,49 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         getMoviesByQuery()
     }
     
+    func getMoreMovies() {
+        let searchText = movieSearchBar.text!
+        let nextPage = Int(ceil(Double(movies.count)/20)) + 1
+        if !(nextPage >= totalNumPages) {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let query = searchText.replacingOccurrences(of: " ", with: "+")
+                    let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)&page=\(nextPage)")
+                    let data = try Data(contentsOf: url!)
+                    let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
+                    self.totalNumPages = json.total_pages
+//                    self.movies.removeAll()
+//                    self.imageCache.removeAll()
+                    for movie in json.results {
+                        if let posterPath = movie.poster_path {
+                            self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count))
+                            
+                            let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
+                            let data = try Data(contentsOf: url!)
+                            self.imageCache.append(UIImage(data: data)!)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.movieCollection.reloadData()
+                        self.spinner.stopAnimating()
+                        self.refresher.endRefreshing()
+                    }
+                } catch {
+                    //                Display some message about not having internet access
+//                    let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+//                    noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                    self.present(noInternet, animated: true)
+                }
+            }
+        }
+    }
+    
     @objc func getMoviesByQuery() {
         let searchText = movieSearchBar.text!
         if searchText.isEmpty {
+            //TODO: implement multiple pages for popular movies
+            totalNumPages = 1
+            
             movies = popularMovies
             movieCollection.reloadData()
             spinner.stopAnimating()
@@ -77,10 +120,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
                 let data = try Data(contentsOf: url!)
                 let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
+                self.totalNumPages = json.total_pages
                 self.movies.removeAll()
+                self.imageCache.removeAll()
                 for movie in json.results {
                     if let posterPath = movie.poster_path {
-                        self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                        self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count))
+                        
+                        let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
+                        let data = try Data(contentsOf: url!)
+                        self.imageCache.append(UIImage(data: data)!)
                     }
                 }
                 DispatchQueue.main.async {
@@ -89,8 +138,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     self.refresher.endRefreshing()
                 }
             } catch {
-                //                Display some message about not having internet access
-                let noInternet = UIAlertController(title: "Error Connecting", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+//                Display some message about not having internet access
+                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
                 noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(noInternet, animated: true)
             }
@@ -105,12 +154,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=29689c3db85cc939c7b90bed28d5cb85")
                 let data = try Data(contentsOf: url!)
                 let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
-                //        movies.removeAll()
+                self.popularMovies.removeAll()
+                self.imageCache.removeAll()
                 for movie in json.results {
                     if let posterPath = movie.poster_path {
-                        self.popularMovies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count) )
+                        self.popularMovies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count))
+                        
+                        let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
+                        let data = try Data(contentsOf: url!)
+                        self.imageCache.append(UIImage(data: data)!)
                     }
                 }
+
                 DispatchQueue.main.async {
                     self.movies = self.popularMovies
                     self.movieCollection.reloadData()
@@ -118,19 +173,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 }
             } catch {
 //                Display some message about not having internet access
-                
+                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(noInternet, animated: true)
+//                let refreshView = UIView(frame: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let movie = collectionView.dequeueReusableCell(withReuseIdentifier: "movie", for: indexPath) as! Movie
-        let url = URL(string: "https://image.tmdb.org/t/p/w185\(movies[indexPath.row].poster_path!)")
-        //TODO: try and catch safely
-        let data = try! Data(contentsOf: url!)
-        movie.movieImageView.image = UIImage(data: data)
+        let movie = collectionView.dequeueReusableCell(withReuseIdentifier: "movie", for: indexPath) as! MovieCollectionViewCell
+        movie.movieImageView.image = nil
+        movie.movieImageView.image = imageCache[indexPath.row]
+        //instead do: movie.movieImageView = cache[indexPath.row]
+        
         movie.movieTitleLabel.text = movies[indexPath.row].title
         movie.data = movies[indexPath.row]
+       
         return movie
     }
     
@@ -138,9 +197,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return movies.count
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let collectionHeight = movieCollection.frame.height
+        let contentHeight = movieCollection.contentSize.height
+        let offsetPosition = movieCollection.contentOffset.y
+        
+        if offsetPosition + collectionHeight >= contentHeight {
+            //User has scrolled to the bottom of the collection view
+            getMoreMovies()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let movieDetailsVC = segue.destination as? MovieDetailViewController
-        guard let movie = sender as? Movie else {
+        guard let movie = sender as? MovieCollectionViewCell else {
             print("error")
             return
         }
