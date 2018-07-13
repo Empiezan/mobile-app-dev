@@ -72,7 +72,7 @@
             </objects>
             <point key="canvasLocation" x="2100" y="-47"/>
         </scene>
-        <!--Movies from TMDB-->
+        <!--Movies-->
         <scene sceneID="iOg-ce-Sf7">
             <objects>
                 <viewController id="RTb-8f-Fqk" customClass="ViewController" customModule="MichaelChang_Lab4" customModuleProvider="target" sceneMemberID="viewController">
@@ -156,7 +156,7 @@
                         <viewLayoutGuide key="safeArea" id="eXw-o1-9tg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="Movie" id="slb-Re-4IN"/>
-                    <navigationItem key="navigationItem" title="Movies from TMDB" id="tiZ-ds-8Cw">
+                    <navigationItem key="navigationItem" title="Movies" id="tiZ-ds-8Cw">
                         <barButtonItem key="rightBarButtonItem" id="ZKn-xp-ab7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wGQ-DX-XaV">
                                 <rect key="frame" x="309" y="7" width="50" height="30"/>

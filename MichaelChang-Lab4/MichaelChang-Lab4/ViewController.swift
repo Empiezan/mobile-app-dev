@@ -193,17 +193,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let movie = collectionView.dequeueReusableCell(withReuseIdentifier: "movie", for: indexPath) as! MovieCollectionViewCell
-//            movie.movieImageView.image = nil
             movie.movieImageView.image = imageCache[indexPath.row]
-            
-//            movie.movieTitleLabel.text = nil
+        
             movie.movieTitleLabel.text = movies[indexPath.row].title
             print(indexPath.row)
             movie.data = movies[indexPath.row]
         
             return movie
-       
-//        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -228,15 +224,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             print("error")
             return
         }
-//        for i in 0...movies.count-1 {
-//            if movies[i].title == movie.movieTitleLabel.text {
-                movieDetailsVC?.movieId = movie.data.id
-                movieDetailsVC?.movieTitle = movie.data.title
-                movieDetailsVC?.posterImage = movie.movieImageView.image
-                movieDetailsVC?.score = Int(movie.data.vote_average * 10)
-                movieDetailsVC?.releaseDate = movie.data.release_date
-//            }
-//        }
+        movieDetailsVC?.movieId = movie.data.id
+        movieDetailsVC?.movieTitle = movie.data.title
+        movieDetailsVC?.posterImage = movie.movieImageView.image
+        movieDetailsVC?.score = Int(movie.data.vote_average * 10)
+        movieDetailsVC?.releaseDate = movie.data.release_date
 
     }
     

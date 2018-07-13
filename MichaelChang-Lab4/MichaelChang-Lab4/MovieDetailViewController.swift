@@ -60,7 +60,12 @@ class MovieDetailViewController: UIViewController {
         
         for locale in json.results {
             if "US" == locale.iso_3166_1 {
-                return locale.release_dates[0].certification!
+                if locale.release_dates[0].certification! == ""{
+                    return "N/A"
+                }
+                else {
+                    return locale.release_dates[0].certification!
+                }
             }
         }
         return "N/A"
