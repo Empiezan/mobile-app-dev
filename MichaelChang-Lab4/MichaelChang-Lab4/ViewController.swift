@@ -22,6 +22,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var spinner : UIActivityIndicatorView!
     var refresher:UIRefreshControl!
     var imageCache = [UIImage]()
+    var popularMoviesImages = [UIImage]()
+    var lastEdit : NSDate!
     
     @IBOutlet weak var movieSearchBar: UISearchBar!
     @IBOutlet weak var movieCollection: UICollectionView!
@@ -31,15 +33,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Do any additional setup after loading the view, typically from a nib.
         setSpinner()
         getPopularMovies()
-        setUpRefresher()
+//        setUpRefresher()
     }
     
-    func setUpRefresher() {
-        refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(getMoviesByQuery), for: .valueChanged)
-        movieCollection.alwaysBounceVertical = true
-        movieCollection.addSubview(refresher)
-    }
+//    func setUpRefresher() {
+//        refresher = UIRefreshControl()
+//        refresher.addTarget(self, action: #selector(getMoviesByQuery), for: .valueChanged)
+//        movieCollection.alwaysBounceVertical = true
+//        movieCollection.addSubview(refresher)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,12 +55,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func setSpinner() {
-        spinner = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 100, y: view.center.y - 100, width: 50, height: 50))
+        spinner = UIActivityIndicatorView(frame: CGRect(x: view.center.x, y: view.center.y, width: 50, height: 50))
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        spinner.startAnimating()
+        if searchText == "" {
+            getMoviesByQuery()
+        }
+    }
+    
+    @IBAction func search(_ sender: Any) {
         spinner.startAnimating()
         getMoviesByQuery()
     }
@@ -67,15 +76,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let searchText = movieSearchBar.text!
         let nextPage = Int(ceil(Double(movies.count)/20)) + 1
         if !(nextPage >= totalNumPages) {
-            DispatchQueue.global(qos: .userInitiated).async {
+//            DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let query = searchText.replacingOccurrences(of: " ", with: "+")
                     let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)&page=\(nextPage)")
                     let data = try Data(contentsOf: url!)
                     let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
                     self.totalNumPages = json.total_pages
-//                    self.movies.removeAll()
-//                    self.imageCache.removeAll()
                     for movie in json.results {
                         if let posterPath = movie.poster_path {
                             self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count))
@@ -86,9 +93,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         }
                     }
                     DispatchQueue.main.async {
-                        self.movieCollection.reloadData()
                         self.spinner.stopAnimating()
-                        self.refresher.endRefreshing()
+//                        self.refresher.endRefreshing()
+                        self.movieCollection.reloadData()
+                        print("done")
                     }
                 } catch {
                     //                Display some message about not having internet access
@@ -96,57 +104,58 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //                    noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
 //                    self.present(noInternet, animated: true)
                 }
-            }
+//            }
         }
     }
-    
+ 
     @objc func getMoviesByQuery() {
+        movies.removeAll()
+        imageCache.removeAll()
         let searchText = movieSearchBar.text!
         if searchText.isEmpty {
             //TODO: implement multiple pages for popular movies
-            totalNumPages = 1
-            
             movies = popularMovies
-            movieCollection.reloadData()
+            imageCache = popularMoviesImages
             spinner.stopAnimating()
-            refresher.endRefreshing()
+//            refresher.endRefreshing()
+            movieCollection.reloadData()
             return
         }
         
-        DispatchQueue.global(qos: .userInitiated).async {
+//        DispatchQueue.global(qos: .userInteractive).async {
             do {
                 print(searchText)
                 let query = searchText.replacingOccurrences(of: " ", with: "+")
                 let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=29689c3db85cc939c7b90bed28d5cb85&query=\(query)")
-                let data = try Data(contentsOf: url!)
-                let json = try JSONDecoder().decode(TMDbSearchResult.self, from: data)
+                let data = try! Data(contentsOf: url!)
+                let json = try! JSONDecoder().decode(TMDbSearchResult.self, from: data)
                 self.totalNumPages = json.total_pages
-                self.movies.removeAll()
-                self.imageCache.removeAll()
                 for movie in json.results {
                     if let posterPath = movie.poster_path {
                         self.movies.append(MovieData(id: movie.id, poster_path: posterPath, title: movie.title, release_date: movie.release_date, vote_average: movie.vote_average, overview: movie.overview, vote_count: movie.vote_count))
                         
                         let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
-                        let data = try Data(contentsOf: url!)
+                        let data = try! Data(contentsOf: url!)
                         self.imageCache.append(UIImage(data: data)!)
                     }
                 }
-                DispatchQueue.main.async {
-                    self.movieCollection.reloadData()
+//                DispatchQueue.main.async {
                     self.spinner.stopAnimating()
-                    self.refresher.endRefreshing()
-                }
+//                    self.refresher.endRefreshing()
+                    self.movieCollection.reloadData()
+                    print(self.movies.count)
+                    print(self.imageCache.count)
+//                }
             } catch {
 //                Display some message about not having internet access
-                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
-                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(noInternet, animated: true)
+//                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+//                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(noInternet, animated: true)
             }
-        }
-        
+//        }
+    
     }
-
+ 
     func getPopularMovies() {
         spinner.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
@@ -162,20 +171,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                         
                         let url = URL(string: "https://image.tmdb.org/t/p/w185\(posterPath)")
                         let data = try Data(contentsOf: url!)
-                        self.imageCache.append(UIImage(data: data)!)
+                        self.popularMoviesImages.append(UIImage(data: data)!)
                     }
                 }
 
                 DispatchQueue.main.async {
                     self.movies = self.popularMovies
+                    self.imageCache = self.popularMoviesImages
                     self.movieCollection.reloadData()
                     self.spinner.stopAnimating()
                 }
             } catch {
 //                Display some message about not having internet access
-                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
-                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(noInternet, animated: true)
+//                let noInternet = UIAlertController(title: "Error Loading", message: "Please check your internet connection and refresh the page", preferredStyle: .alert)
+//                noInternet.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                self.present(noInternet, animated: true)
 //                let refreshView = UIView(frame: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>))
             }
         }
@@ -183,34 +193,34 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let movie = collectionView.dequeueReusableCell(withReuseIdentifier: "movie", for: indexPath) as! MovieCollectionViewCell
-        movie.movieImageView.image = nil
-        movie.movieImageView.image = imageCache[indexPath.row]
-        //instead do: movie.movieImageView = cache[indexPath.row]
+//            movie.movieImageView.image = nil
+            movie.movieImageView.image = imageCache[indexPath.row]
+            
+//            movie.movieTitleLabel.text = nil
+            movie.movieTitleLabel.text = movies[indexPath.row].title
+            print(indexPath.row)
+            movie.data = movies[indexPath.row]
         
-        movie.movieTitleLabel.text = movies[indexPath.row].title
-        movie.data = movies[indexPath.row]
+            return movie
        
-        return movie
+//        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let collectionHeight = movieCollection.frame.height
         let contentHeight = movieCollection.contentSize.height
         let offsetPosition = movieCollection.contentOffset.y
-        
         if offsetPosition + collectionHeight >= contentHeight {
             //User has scrolled to the bottom of the collection view
             getMoreMovies()
         }
     }
+ 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let movieDetailsVC = segue.destination as? MovieDetailViewController
@@ -218,11 +228,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             print("error")
             return
         }
-        movieDetailsVC?.movieId = movie.data.id
-        movieDetailsVC?.movieTitle = movie.data.title
-        movieDetailsVC?.posterPath = movie.data.poster_path
-        movieDetailsVC?.score = Int(movie.data.vote_average * 10)
-        movieDetailsVC?.releaseDate = movie.data.release_date
+//        for i in 0...movies.count-1 {
+//            if movies[i].title == movie.movieTitleLabel.text {
+                movieDetailsVC?.movieId = movie.data.id
+                movieDetailsVC?.movieTitle = movie.data.title
+                movieDetailsVC?.posterImage = movie.movieImageView.image
+                movieDetailsVC?.score = Int(movie.data.vote_average * 10)
+                movieDetailsVC?.releaseDate = movie.data.release_date
+//            }
+//        }
+
     }
     
 }

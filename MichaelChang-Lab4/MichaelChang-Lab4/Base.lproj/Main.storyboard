@@ -80,11 +80,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-Fm-tkT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-Fm-tkT">
+                                <rect key="frame" x="0.0" y="64" width="330" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="RTb-8f-Fqk" id="ll5-dE-Foc"/>
+                                    <outlet property="delegate" destination="RTb-8f-Fqk" id="Zfc-Ws-KMc"/>
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-sF-qsW" customClass="MovieCollectionView" customModule="MichaelChang_Lab4" customModuleProvider="target">
@@ -131,22 +131,33 @@
                                     <outlet property="delegate" destination="RTb-8f-Fqk" id="MRU-Gx-c0j"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJC-UZ-aCW">
+                                <rect key="frame" x="330" y="77" width="45" height="30"/>
+                                <state key="normal" title="Go!"/>
+                                <connections>
+                                    <action selector="search:" destination="RTb-8f-Fqk" eventType="touchUpInside" id="zXx-ev-Gvz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AaM-Fm-tkT" firstAttribute="leading" secondItem="eXw-o1-9tg" secondAttribute="leading" id="FGi-ra-65K"/>
+                            <constraint firstItem="eXw-o1-9tg" firstAttribute="trailing" secondItem="pJC-UZ-aCW" secondAttribute="trailing" id="FHj-5k-6a0"/>
                             <constraint firstItem="Fs3-sF-qsW" firstAttribute="leading" secondItem="eXw-o1-9tg" secondAttribute="leading" id="JKx-oR-deF"/>
+                            <constraint firstItem="pJC-UZ-aCW" firstAttribute="leading" secondItem="eXw-o1-9tg" secondAttribute="leading" constant="330" id="Jx3-AD-PfJ"/>
+                            <constraint firstItem="eXw-o1-9tg" firstAttribute="bottom" secondItem="pJC-UZ-aCW" secondAttribute="bottom" constant="511" id="MBy-zb-Vv1"/>
                             <constraint firstItem="Fs3-sF-qsW" firstAttribute="top" secondItem="AaM-Fm-tkT" secondAttribute="bottom" id="O5J-Na-FXI"/>
                             <constraint firstItem="Fs3-sF-qsW" firstAttribute="bottom" secondItem="eXw-o1-9tg" secondAttribute="bottom" id="O7h-wK-XHo"/>
-                            <constraint firstItem="eXw-o1-9tg" firstAttribute="trailing" secondItem="AaM-Fm-tkT" secondAttribute="trailing" id="ZlX-Eg-KCX"/>
                             <constraint firstItem="AaM-Fm-tkT" firstAttribute="top" secondItem="eXw-o1-9tg" secondAttribute="top" id="aP3-11-X39"/>
+                            <constraint firstItem="pJC-UZ-aCW" firstAttribute="leading" secondItem="AaM-Fm-tkT" secondAttribute="trailing" id="csY-Nw-8W8"/>
                             <constraint firstItem="Fs3-sF-qsW" firstAttribute="trailing" secondItem="eXw-o1-9tg" secondAttribute="trailing" id="gGE-9T-vmX"/>
+                            <constraint firstItem="pJC-UZ-aCW" firstAttribute="top" secondItem="eXw-o1-9tg" secondAttribute="top" constant="13" id="rXz-Av-xB8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eXw-o1-9tg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="Movie" id="slb-Re-4IN"/>
                     <navigationItem key="navigationItem" title="Movies from TMDB" id="tiZ-ds-8Cw">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZKn-xp-ab7">
+                        <barButtonItem key="rightBarButtonItem" id="ZKn-xp-ab7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wGQ-DX-XaV">
                                 <rect key="frame" x="309" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -214,7 +225,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteMovie" id="sHf-QG-itq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteMovie" id="sHf-QG-itq">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sHf-QG-itq" id="tss-cU-gC4">

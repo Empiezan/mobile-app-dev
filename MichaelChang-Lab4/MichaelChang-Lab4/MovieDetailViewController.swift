@@ -12,10 +12,9 @@ class MovieDetailViewController: UIViewController {
 
     var movieId : Int!
     var movieTitle : String!
-    var posterPath : String!
+    var posterImage : UIImage!
     var releaseDate : String!
     var score : Int!
-    
     
     @IBOutlet weak var movieTitleLabel: UINavigationItem!
     @IBOutlet weak var posterImageView: UIImageView!
@@ -42,23 +41,14 @@ class MovieDetailViewController: UIViewController {
         movieTitleLabel.title = movieTitle!
         releaseLabel.text = "Release Date: \(releaseDate!)"
         scoreLabel.text = "Score: \(score!)/100"
+        posterImageView.image = posterImage
         
         DispatchQueue.global().async {
-            do {
-                let url = URL(string: "https://image.tmdb.org/t/p/w185\(self.posterPath!)")
-                //TODO: try and catch safely
-                let data = try Data(contentsOf: url!)
-                let cert = self.getCertification()
-                DispatchQueue.main.async {
-                    if cert != nil {
-                        self.posterImageView.image = UIImage(data: data)
-                        self.ratingLabel.text = "Rating: \(cert!)"
-                    }
-//                    Should probably catch error more safely...
-                    
+            let cert = self.getCertification()
+            DispatchQueue.main.async {
+                if cert != nil {
+                    self.ratingLabel.text = "Rating: \(cert!)"
                 }
-            } catch {
-//                print error about internet connection
             }
         }
     }
@@ -73,7 +63,7 @@ class MovieDetailViewController: UIViewController {
                 return locale.release_dates[0].certification!
             }
         }
-        return nil
+        return "N/A"
     }
     
     @IBAction func addFavoriteMovie(_ sender: Any) {
