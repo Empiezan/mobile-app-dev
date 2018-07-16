@@ -12,17 +12,13 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
     
     var pListPath : String!
     var favorites : [String] = []
+    var movieIds : [Int] = []
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getFavorites()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,12 +28,9 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func getFavorites() {
-//        pListPath = Bundle.main.path(forResource: "Favorites", ofType: "plist")
-//        favorites = NSArray(contentsOfFile: pListPath!)! as! Array<String>
         favorites.removeAll()
         let path = Bundle.main.path(forResource: "favorites", ofType: "db")
         let contactDB = FMDatabase(path: path)
@@ -51,7 +44,9 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
                 let results = try contactDB.executeQuery("select * from favorites", values: nil)
                 while(results.next()) {
                     let title = results.string(forColumn: "movieTitle")
+                    let id = results.int(forColumn: "movieId")
                     favorites.append(title!)
+                    movieIds.append(Int(id))
                 }
             } catch let error as NSError {
                 print("failed \(error)")
@@ -70,8 +65,6 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteMovie", for: indexPath)
         cell.textLabel?.text = favorites[indexPath.row]
-        // Configure the cell...
-
         return cell
     }
  
@@ -132,14 +125,15 @@ class FavoritesTableViewController: UIViewController, UITableViewDataSource, UIT
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
     }
-    */
+ 
 
 }

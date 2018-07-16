@@ -23,7 +23,6 @@
 		22F1A4D120EEFAFA0094A456 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4D020EEFAFA0094A456 /* MovieData.swift */; };
 		22F1A4D320EF0C270094A456 /* MovieCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1A4D220EF0C270094A456 /* MovieCollectionView.swift */; };
 		50464EC0ED8BE6484B641272 /* Pods_MichaelChang_Lab4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9443B1E1C06C209FB9E75F01 /* Pods_MichaelChang_Lab4.framework */; };
-		685E1ADD20F1824800B4D3A1 /* favorites.db in Resources */ = {isa = PBXBuildFile; fileRef = 685E1ADC20F1824800B4D3A1 /* favorites.db */; };
 		685E1AEA20F182CA00B4D3A1 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1ADF20F182C900B4D3A1 /* FMResultSet.m */; };
 		685E1AEB20F182CA00B4D3A1 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE420F182C900B4D3A1 /* FMDatabase.m */; };
 		685E1AEC20F182CA00B4D3A1 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 685E1AE520F182C900B4D3A1 /* FMDatabasePool.m */; };
@@ -39,6 +38,7 @@
 		68A2DF9D20FABF910070C511 /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A2DF9C20FABF910070C511 /* TrailerViewController.swift */; };
 		68A2DF9F20FAC3120070C511 /* VideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A2DF9E20FAC3120070C511 /* VideoResult.swift */; };
 		68A2DFA320FAC3670070C511 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A2DFA220FAC3670070C511 /* Video.swift */; };
+		68E6536E20FC274B0070EE00 /* favorites.db in Resources */ = {isa = PBXBuildFile; fileRef = 68E6536D20FC274B0070EE00 /* favorites.db */; };
 		99E21E0EC74AF952E086E651 /* Pods_MichaelChang_Lab4Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B760571459526AF42484402 /* Pods_MichaelChang_Lab4Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,6 @@
 		22F1A4CE20EEF9650094A456 /* TMDbSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbSearchResult.swift; sourceTree = "<group>"; };
 		22F1A4D020EEFAFA0094A456 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		22F1A4D220EF0C270094A456 /* MovieCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionView.swift; sourceTree = "<group>"; };
-		685E1ADC20F1824800B4D3A1 /* favorites.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = favorites.db; path = ../../favorites.db; sourceTree = "<group>"; };
 		685E1ADE20F182C800B4D3A1 /* MichaelChang-Lab4-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MichaelChang-Lab4-Bridging-Header.h"; sourceTree = "<group>"; };
 		685E1ADF20F182C900B4D3A1 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		685E1AE020F182C900B4D3A1 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		68A2DF9C20FABF910070C511 /* TrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
 		68A2DF9E20FAC3120070C511 /* VideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResult.swift; sourceTree = "<group>"; };
 		68A2DFA220FAC3670070C511 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		68E6536D20FC274B0070EE00 /* favorites.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = favorites.db; sourceTree = "<group>"; };
 		9443B1E1C06C209FB9E75F01 /* Pods_MichaelChang_Lab4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MichaelChang_Lab4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		993932EAA244BB79ED2432BA /* Pods-MichaelChang-Lab4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MichaelChang-Lab4Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MichaelChang-Lab4Tests/Pods-MichaelChang-Lab4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEB438ED98AEE2F75DE6E26A /* Pods_MichaelChang_Lab4UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MichaelChang_Lab4UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +204,7 @@
 				22F1A4AA20EEE6910094A456 /* Info.plist */,
 				2238BC0920F123BD0087A346 /* Favorites.plist */,
 				689CB74720F28C0600D84241 /* GoogleService-Info.plist */,
-				685E1ADC20F1824800B4D3A1 /* favorites.db */,
+				68E6536D20FC274B0070EE00 /* favorites.db */,
 			);
 			path = "MichaelChang-Lab4";
 			sourceTree = "<group>";
@@ -269,7 +269,6 @@
 				22F1A49720EEE6880094A456 /* Sources */,
 				22F1A49820EEE6880094A456 /* Frameworks */,
 				22F1A49920EEE6880094A456 /* Resources */,
-				C8CD55408AE0027F6F49A843 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -370,7 +369,7 @@
 				2238BC0A20F123BD0087A346 /* Favorites.plist in Resources */,
 				22F1A4A920EEE6910094A456 /* LaunchScreen.storyboard in Resources */,
 				689CB74820F28C0600D84241 /* GoogleService-Info.plist in Resources */,
-				685E1ADD20F1824800B4D3A1 /* favorites.db in Resources */,
+				68E6536E20FC274B0070EE00 /* favorites.db in Resources */,
 				22F1A4A620EEE6910094A456 /* Assets.xcassets in Resources */,
 				22F1A4A420EEE6880094A456 /* Main.storyboard in Resources */,
 			);
@@ -445,24 +444,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C8CD55408AE0027F6F49A843 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MichaelChang-Lab4/Pods-MichaelChang-Lab4-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MichaelChang-Lab4/Pods-MichaelChang-Lab4-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

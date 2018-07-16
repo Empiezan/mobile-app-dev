@@ -10,17 +10,14 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
-    var movieId : Int!
-    var movieTitle : String!
-    var posterImage : UIImage!
-    var releaseDate : String!
-    var score : Int!
+    var movie : MovieData!
     
     @IBOutlet weak var movieTitleLabel: UINavigationItem!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var addToFavorites: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,27 +32,60 @@ class MovieDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setMovieDetails()
+        checkFavorites()
+    }
+    
+    func checkFavorites() {
+        let path = Bundle.main.path(forResource: "favorites", ofType: "db")
+        let contactDB = FMDatabase(path: path)
+        
+        if !(contactDB.open()) {
+            print("Unable to open database")
+            return
+        }
+        else {
+            do {
+                let results = try contactDB.executeQuery("select * from favorites", values: nil)
+                while(results.next()) {
+                    let title = results.string(forColumn: "movieTitle")
+                    if title == movie.title {
+                        addToFavorites.isHidden = true
+                    }
+                }
+            } catch let error as NSError {
+                print("failed \(error)")
+            }
+        }
     }
     
     func setMovieDetails() {
-        movieTitleLabel.title = movieTitle!
-        releaseLabel.text = "Release: \(releaseDate!)"
-        scoreLabel.text = "Score: \(score!)/100"
-        posterImageView.image = posterImage
-        
+        movieTitleLabel.title = movie.title
+        releaseLabel.text = "Release: \(movie.release_date)"
+        scoreLabel.text = "Score: \(Int(movie.vote_average * 10))/100"
+
         DispatchQueue.global().async {
-            let cert = self.getCertification()
-            DispatchQueue.main.async {
-                if cert != nil {
-                    self.ratingLabel.text = "Rating: \(cert!)"
+            do {
+                let cert = self.getCertification()
+                let url = URL(string: "https://image.tmdb.org/t/p/w185\(self.movie.poster_path!)")
+                let data = try Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    if cert != nil {
+                        self.ratingLabel.text = "Rating: \(cert!)"
+                    }
+                    self.posterImageView.image = UIImage(data: data)
                 }
+            } catch let error as NSError {
+                print(error)
             }
         }
     }
     
     func getCertification() -> String? {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId!)/release_dates?api_key=29689c3db85cc939c7b90bed28d5cb85")
-        let data = try! Data(contentsOf: url!)
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movie.id!)/release_dates?api_key=29689c3db85cc939c7b90bed28d5cb85")
+        var data : Data!
+        while data == nil {
+            data = try? Data(contentsOf: url!)
+        }
         let json = try! JSONDecoder().decode(TMDbDetailsResult.self, from: data)
         
         for locale in json.results {
@@ -72,11 +102,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction func addFavoriteMovie(_ sender: Any) {
-//        print(movieTitle)
-//        let path = Bundle.main.path(forResource: "Favorites", ofType: "plist")
-//        print(path!)
-//        movieTitle!.write(path!)
-        
         let path = Bundle.main.path(forResource: "favorites", ofType: "db")
         let contactDB = FMDatabase(path: path)
         
@@ -86,12 +111,11 @@ class MovieDetailViewController: UIViewController {
         }
         else {
             do {
-                try contactDB.executeUpdate("insert into favorites (movieTitle) values (?) ", values: [movieTitle])
+                try contactDB.executeUpdate("insert into favorites (movieTitle, movieId, poster_path, release_date, score) values (?,?,?,?,?) ", values: [movie.title, movie.id, movie.poster_path!, movie.release_date, movie.vote_average])
             } catch let error as NSError {
                 print("failed \(error)")
             }
         }
-        
     }
     
 
@@ -103,7 +127,7 @@ class MovieDetailViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let vc = segue.destination as? TrailerViewController {
-            vc.movieId = movieId
+            vc.movieId = movie.id
         }
     }
  

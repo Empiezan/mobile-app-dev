@@ -6,7 +6,6 @@ target 'MichaelChang-Lab4' do
   use_frameworks!
 
   # Pods for MichaelChang-Lab4
-  pod "youtube-ios-player-helper", "~> 0.1.4"
 
   target 'MichaelChang-Lab4Tests' do
     inherit! :search_paths
