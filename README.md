@@ -3,7 +3,7 @@ This repository is a collection of 4 iOS apps that were developed over the cours
 
 ## Getting Started
 ### Xcode 9.3
-The code in this repository is written in Swift 3 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. 
+The code in this repository is written in Swift 3/4 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. 
 ### Running apps on iPhone or Simulator 
 App 2 was developed specifically to adjust to different screen sizes and iOS devices, but Apps 1, 3, and 4 were only developed and tested on an iPhone 8 simulation. Therefore, it is advised to select iPhone 8 or iPhone 8 Plus as the simulator in general. 
 
