@@ -13,3 +13,8 @@ An app to keep track of shopping cart items and the running total. The app consi
 ### App/Lab 2: Virtual Pet App
 In this app, users have 4 pets: a dog, a cat, a fish, and a bird. Each pet has its own food level and happiness level. In addition, the user has two buttons to feed and play with each pet. The `feed` button spawns a bag of pet food that the user can give to the pet by dragging the bag to the pet. By feeding the pet, its food level increases by one point. The `play` button unfortunately does not spawn a pet toy, but the pet's happiness level does increase and its food level decreases. Once a pet's food level reaches 0, the user can no longer play with the pet and the pet's happiness level will not increase.
 
+### App/Lab 3: Free-drawing App
+For this drawing app, users can draw to their heart's content, vary the size of the brush, choose different colors, and save their beautiful creations to the Photo Gallery. Users may also import their own pictures, draw on the pictures, and save the photos. 
+
+### App/Lab 4: Movie Buff Assistant
+This assistant allows users to browse the catalog of movies from the TMDb database, check out the most popular movies, search movies by genre, view movie details (e.g., rating and release date), and save movies that they're interested in. To retrieve the movie data, the apps sends several GET requests to the TMDb API. 
