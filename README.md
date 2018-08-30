@@ -10,4 +10,6 @@ App 2 was developed specifically to adjust to different screen sizes and iOS dev
 ### App/Lab 1: Shopping Cart Calculator
 An app to keep track of shopping cart items and the running total. The app consists of two main views: a form and a tableview. In the form, users can supply information such as the name of the item, quantity, discounts, and taxes. The tableview displays the items that users have submitted from the form, shows the running total, and allows users to delete individual items or all items.
 
+### App/Lab 2: Virtual Pet App
+In this app, users have 4 pets: a dog, a cat, a fish, and a bird. Each pet has its own food level and happiness level. In addition, the user has two buttons to feed and play with each pet. The `feed` button spawns a bag of pet food that the user can give to the pet by dragging the bag to the pet. By feeding the pet, its food level increases by one point. The `play` button unfortunately does not spawn a pet toy, but the pet's happiness level does increase and its food level decreases. Once a pet's food level reaches 0, the user can no longer play with the pet and the pet's happiness level will not increase.
 
