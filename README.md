@@ -14,7 +14,7 @@ An app to keep track of shopping cart items and the running total. The app consi
 <img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Screen_Recordings/Lab1.gif" width="300"/>
 
 ### App/Lab 2: Virtual Pet App
-In this app, users have 4 pets: a dog, a cat, a fish, and a bird. Each pet has its own food level and happiness level. In addition, the user has two buttons to feed and play with each pet. The `feed` button spawns a bag of pet food that the user can give to the pet by dragging the bag to the pet. By feeding the pet, its food level increases by one point. The `play` button unfortunately does not spawn a pet toy, but the pet's happiness level does increase and its food level decreases. Once a pet's food level reaches 0, the user can no longer play with the pet and the pet's happiness level will not increase.
+In this app, users have 5 pets: a dog, a cat, a fish, a bunny, and a bird. Each pet has its own food level and happiness level. In addition, the user has two buttons to feed and play with each pet. The `feed` button spawns a bag of pet food that the user can give to the pet by dragging the bag to the pet. By feeding the pet, its food level increases by one point. The `play` button unfortunately does not spawn a pet toy, but the pet's happiness level does increase and its food level decreases. Once a pet's food level reaches 0, the user can no longer play with the pet and the pet's happiness level will not increase.
 
 <img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Screen_Recordings/Lab2.gif" width="300"/>
 
