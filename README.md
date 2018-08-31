@@ -3,9 +3,10 @@ This repository is a collection of 4 iOS apps that were developed over the cours
 
 ## Getting Started
 ### Xcode 9.3
-The code in this repository is written in Swift 3/4 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. 
+The code in this repository is written in Swift 3/4 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. Each app/lab is located in a directory named MichaelChang-LabX, where X is the app number. For Apps/Labs 1, 2, and 3, the project can simply be opened via the xcodeproj with the corresponding named MichaelChang-LabX. App/Lab 4 contains header and Objective-C files for Google Firebase, so the project must be opened through the MichaelChang-Lab4.xcworkspace file.
+
 ### Running apps on iPhone or Simulator 
-App 2 was developed specifically to adjust to different screen sizes and iOS devices, but Apps 1, 3, and 4 were only developed and tested on an iPhone 8 simulation. Therefore, it is advised to select iPhone 8 or iPhone 8 Plus as the simulator in general. 
+App 2 was developed specifically to adjust to different screen sizes and iOS devices, but Apps 1, 3, and 4 were only developed and tested on an iPhone 8 simulation. Therefore, it is advised to select iPhone 8 or iPhone 8 Plus as the simulator for Apps 1, 3, and 4. 
 
 ### App/Lab 1: Shopping Cart Calculator
 An app to keep track of shopping cart items and the running total. The app consists of two main views: a form and a tableview. In the form, users can supply information such as the name of the item, quantity, discounts, and taxes. The tableview displays the items that users have submitted from the form, shows the running total, and allows users to delete individual items or all items.
