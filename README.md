@@ -3,38 +3,27 @@ This repository is a collection of 4 iOS apps that were developed over the cours
 
 ## Getting Started
 ### Xcode 9.3
-The code in this repository is written in Swift 3/4 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. 
+The code in this repository is written in Swift 3/4 and was developed in Xcode 9.3. Therefore, ensure that the Xcode version is at least version 9.3 when attempting to compile and test the apps. Each app/lab is located in a directory named MichaelChang-LabX, where X is the app number. For Apps/Labs 1, 2, and 3, the project can simply be opened via the xcodeproj with the corresponding named MichaelChang-LabX. App/Lab 4 contains header and Objective-C files for Google Firebase, so the project must be opened through the MichaelChang-Lab4.xcworkspace file.
+
 ### Running apps on iPhone or Simulator 
-App 2 was developed specifically to adjust to different screen sizes and iOS devices, but Apps 1, 3, and 4 were only developed and tested on an iPhone 8 simulation. Therefore, it is advised to select iPhone 8 or iPhone 8 Plus as the simulator in general. 
+App 2 was developed specifically to adjust to different screen sizes and iOS devices, but Apps 1, 3, and 4 were only developed and tested on an iPhone 8 simulation. Therefore, it is advised to select iPhone 8 or iPhone 8 Plus as the simulator for Apps 1, 3, and 4. 
 
 ### App/Lab 1: Shopping Cart Calculator
 An app to keep track of shopping cart items and the running total. The app consists of two main views: a form and a tableview. In the form, users can supply information such as the name of the item, quantity, discounts, and taxes. The tableview displays the items that users have submitted from the form, shows the running total, and allows users to delete individual items or all items.
 
-<video width="320" height="240" controls>
-  <source src="Lab1.mov" type="video/mp4">
-</video>
+<img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Lab1.gif" width="300"/>
 
 ### App/Lab 2: Virtual Pet App
 In this app, users have 4 pets: a dog, a cat, a fish, and a bird. Each pet has its own food level and happiness level. In addition, the user has two buttons to feed and play with each pet. The `feed` button spawns a bag of pet food that the user can give to the pet by dragging the bag to the pet. By feeding the pet, its food level increases by one point. The `play` button unfortunately does not spawn a pet toy, but the pet's happiness level does increase and its food level decreases. Once a pet's food level reaches 0, the user can no longer play with the pet and the pet's happiness level will not increase.
 
-<video width="320" height="240" controls>
-  <source src="Lab2.mov" type="video/mp4">
-</video>
-
-<video width="320" height="240" controls>
-  <source src="Lab2-landscape.mov" type="video/mp4">
-</video>
+<img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Lab2.gif" width="300"/>
 
 ### App/Lab 3: Free-drawing App
 For this drawing app, users can draw to their heart's content, vary the size of the brush, choose different colors, and save their beautiful creations to the Photo Gallery. Users may also import their own pictures, draw on the pictures, and save the photos. 
 
-<video width="320" height="240" controls>
-  <source src="Lab3.mov" type="video/mp4">
-</video>
+<img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Lab3.gif" width="300"/>
 
 ### App/Lab 4: Movie Buff Assistant
 This assistant allows users to browse the catalog of movies from the TMDb database, check out the most popular movies, search movies by genre, view movie details (e.g., rating and release date), and save movies that they're interested in. To retrieve the movie data, the apps sends several GET requests to the TMDb API. 
 
-<video width="320" height="240" controls>
-  <source src="Lab4.mov" type="video/mp4">
-</video>
+<img src="https://github.com/Empiezan/mobile-app-dev/raw/master/Lab4.gif" width="300"/>
